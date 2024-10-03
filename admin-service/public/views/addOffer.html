@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Eppy</title>
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script>
+        var jqOld = jQuery.noConflict();
+        jqOld(function () {
+            jqOld("#startDate").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        })
+    </script>
+    <script>
+        var jqOld = jQuery.noConflict();
+        jqOld(function () {
+            jqOld("#endDate").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        })
+    </script>
+
+
+
+
+    <!-- <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="doctor.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="./css/animate.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+
+
+    <style>
+        ui-widget-header {
+            /* background: none; */
+            /* background-image: none; */
+            background-color: #f5f5f6;
+            text-transform: uppercase;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    </style>
+</head>
+
+<body onload="offerDetails()">
+
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <img alt="image" style="width: 125px;" src="../img/pizzaNpintLogo.svg" />
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold" style="margin-left: 50px;"></span>
+                                <!-- <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> -->
+                            </a>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    <li>
+                        <a href="/dashboard"><i class="fa fa-th-large"></i> <span
+                                class="nav-label">Dashboards</span></a>
+                    </li>
+                    <li >
+
+                        <a href="/user"><i class="fa fa-users"></i> <span class="nav-label">User</span></a>
+
+                    </li>
+                    <li >
+                        <a href="/vendor"><i class="fa fa-user"></i> <span class="nav-label">Merchant</span></a>
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-ticket"></i> <span class="nav-label">Orders</span></a>
+                        <ul class="nav nav-second-level">
+                            <!-- <li><a href="/orderPending">Order Pending</a></li> -->
+                            <li><a href="/orderProgress">Order Inprogress</a></li>
+                            <li><a href="/orderComplete">Order Completed</a></li>
+                            <li><a href="/orderCancel">Order Cancelled</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/categories"><i class="fa fa-shopping-bag"></i> <span
+                                class="nav-label">Categories</span></a>
+
+                    </li>
+                    <li class='active'>
+                        <a href="/offers"><i class="fa fa-percent"></i> <span class="nav-label">Offers</span></a>
+                    </li>
+                    <li>
+                        <a href="/bannerList"><i class="fa fa-list"></i> <span class=" nav-label">All
+                                Banner</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-life-ring"></i> <span class="nav-labellabellabel">Notification
+                            </span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/singleNotification"> Single Notification</a></li>
+                            <li><a href="/bulkNotification">Bulk Notification</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/complaints"><i class="fa fa-comment"></i> <span
+                                class="nav-label">Complaints/Reports</span></a>
+
+                    </li>
+                    <li   >
+                        <a href="/review"><i class="fa fa-life-ring"></i> <span class=" nav-label">All
+                                Review</span></a>
+                    </li>
+                    <li>
+                        <a href="/FAQs"><i class="fa fa-info-circle"></i> <span class="nav-label">
+                                FAQs</span></a>
+
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-cogs"></i> <span
+                                class="nav-label">Settings</span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/app_version">App Version</a></li>
+                            <li><a href="/settings">Change Password</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to Eppy Admin </span>
+                        </li>
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-sign-out"></i> Log out
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-4    ">
+                    <h2> Add New Offers</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/dashboard">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="/offers">Offers</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <strong>Add New Offer </strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="container">
+                <div class="tab-content container-fluid" style="padding-bottom: 3em;">
+                    <div class="panel panel-primary" style="margin-top: 20px;">
+                        <div class="panel-heading">
+                            <div class="panel-title" style="color:white; text-align:center;">
+                                <h4> Add New Offer </h4>
+                            </div>
+                        </div>
+                        <div style="padding-top:5px; margin-bottom: 2px;" class="panel-body">
+                            <div class="wrapper wrapper-content animated fadeInRight">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="ibox " id="ibox1" style="width:100%;">
+                                            <div class="ibox-content">
+                                                <!-- <div class="sk-spinner sk-spinner-double-bounce">
+                                                    <div class="sk-double-bounce1"></div>
+                                                    <div class="sk-double-bounce2"></div>
+                                                </div> -->
+                                                <form id="form1" method="post" enctype="multipart/form-data">
+                                                    <div class="ibox-content">
+                                                        <div class="row">
+
+                                                            <div class="col-md-12 form-group">
+                                                                <label>Offer Title</label>
+                                                                <input type="tittle" placeholder=" Title"
+                                                                    class="form-control" id="tittle" name="title"
+                                                                    maxlength=50 name="tittle" required>
+                                                                <label>50 character</label>
+                                                            </div>
+                                                            <div class="col-md-12 form-group">
+                                                                <label>Offer Description</label>
+                                                                <input type="description" placeholder="Description"
+                                                                    class="form-control" id="description" maxlength=180
+                                                                    name="description">
+                                                                <label>180 character</label>
+                                                            </div>
+                                                            <!-- <div class="col-md-12 form-group">
+                                                                <label>Categories</label>
+                                                                <select class="form-control" name="categoryId" id="categoryId" style="height: 35px;" required>
+                                                                    <option value="">Please Select One</option>
+                                                                </select>
+                                                            </div>  -->
+                                                            <div class="col-lg-12 form-group">
+                                                                <label>Categories</label>
+                                                                <select multiple data-multi-select-plugin
+                                                                    class="form-control" name="categoryId"
+                                                                    id="categoryId" style="height: 35px;">
+                                                                    <option value="category1"> Categories1</option>
+                                                                    <option value="category2">Categories2</option>
+                                                                    <option value="category3">Categories3</option>
+                                                                    <option value="category4">Categories4</option>
+
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-12 form-group">
+                                                                <label>Restaurants</label>
+                                                                <select multiple data-multi-select-plugin
+                                                                    class="form-control" name="categoryId"
+                                                                    id="categoryId" style="height: 35px;">
+                                                                    <option value="Restaurant1">Search Outlets</option>
+                                                                </select>
+                                                            </div>
+
+
+                                                            <div class="col-md-4 form-group">
+                                                                <label>Offer Percentage</label>
+                                                                <input type="Number"
+                                                                    placeholder="Enter Offer Percentage"
+                                                                    class="form-control" id="offerpercentage"
+                                                                    name="offerpercentage" min="0" required>
+                                                            </div>
+                                                            <div class="col-md-3 form-group">
+                                                            </div>
+                                                            <div class="col-md-4 form-group">
+                                                                <label>Max Discount </label>
+                                                                <input type="Number"
+                                                                    placeholder="Enter Max Discount Amount"
+                                                                    class="form-control" id="maxDiscount"
+                                                                    name="maxDiscount" min="0" required>
+                                                            </div>
+                                                            <div class="col-md-4 form-group">
+                                                                <label>Minimum Order</label>
+
+                                                                <input type="Number" placeholder="Enter Order "
+                                                                    class="form-control" id="minimumOrder"
+                                                                    name="minimumOrder" min="0" required>
+                                                            </div>
+                                                            <div class="col-md-3 form-group">
+                                                            </div>
+
+                                                            <div class="col-md-4 form-group">
+                                                                <label>Per User </label>
+                                                                <input type="Number" placeholder="Enter per user"
+                                                                    class="form-control" id="perUser" name="perUser"
+                                                                    min="0" required>
+                                                            </div>
+
+
+                                                            <div class="col-md-4 form-group">
+                                                                <label>Start Date</label>
+                                                                <input type="startDate" placeholder="Enter Start Date"
+                                                                    class="form-control" id="startDate" name="startDate"
+                                                                    required>
+                                                            </div>
+                                                            <div class="col-md-3 form-group">
+                                                            </div>
+                                                            <div class="col-md-4 form-group">
+                                                                <label>End Date</label>
+                                                                <input type="endDate" placeholder="Enter end Date"
+                                                                    class="form-control" id="endDate" name="expiryDate"
+                                                                    required>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label for="status">Status</label>
+                                                                <select class="form-control" name="status" id="status"
+                                                                    style="height: 35px;" required>
+                                                                    <option value="true">Active</option>
+                                                                    <option value="false">Deactive</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-3 form-group">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label for="showInbanner">Show In Banner</label>
+                                                                <select class="form-control" name="showInbanner"
+                                                                    id="showInbanner" style="height: 35px;">
+                                                                    <option value="true">Yes</option>
+                                                                    <option value="false">No</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label for="cashback">Cash Back</label>
+                                                                <select class="form-control" name="cashback"
+                                                                    id="cashback" style="height: 35px;" required>
+                                                                    <option value="true">Yes</option>
+                                                                    <option value="false">No</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-4 form-group">
+                                                                <label>Coupon</label>
+                                                                <input type="text" placeholder=" Coupon"
+                                                                    class="form-control" id="coupon" name="coupon"
+                                                                    required>
+
+                                                            </div>
+                                                            <div class="col-md-4 form-group">
+                                                                <label>Position </label>
+                                                                <input type="Number" placeholder="Position"
+                                                                    class="form-control" id="position" name="position">
+                                                            </div>
+
+                                                        </div>
+                                                        <div>
+                                                            <img id="blah" src="../img/pizzaNpintLogo.png" alt=""
+                                                                style="width:100px; height:100px; ">
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="file" accept="image/*" name="image" id="image"
+                                                                style="margin-top: 10px; " onchange="readURL(this)">
+                                                            <img id="image" />
+                                                            <div class="pull-right">
+                                                                <button class="btn btn-primary block half-width m-b"
+                                                                    value="submit" id="Submit">Submit
+                                                                </button>
+                                                            </div>
+                                                            <div class="pull-right">
+                                                                <button class="btn btn-primary block half-width m-b"
+                                                                    id="/Offer">Cancel
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="./js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Peity -->
+    <script src="./js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.js'></script>
+    <!-- Custom and plugin javascript -->
+    <script src="./js/inspinia.js"></script>
+    <script src="./js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="./js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Peity -->
+    <script src="./js/demo/peity-demo.js"></script>
+
+    <script>
+        var host = window.location.protocol + "//" + window.location.host;
+        var token = localStorage.getItem("token")
+
+        function logout() {
+            console.log('logout')
+            $.ajax({
+                url: host + '/api/v1/admin/logout',
+                type: 'Get',
+                // data: formData,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    localStorage.removeItem("name");
+                    localStorage.removeItem("token");
+                    window.location.replace('/login');
+                }
+            })
+        };
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(100)
+                        .height(100);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+
+        function offerDetails() {
+            $.ajax({
+                url: host + '/api/v1/category/getAllcategory',
+                type: 'post',
+                contentType: 'application/json',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                dataType: 'json',
+                success: function (data, status) {
+                    if (data.code == 200) {
+                        var select = document.getElementById("categoryId");
+                        for (var i = 0; i < data.result.length; i++) {
+                            var option = document.createElement("option"),
+                                txt = document.createTextNode(data.result[i].categoryName);
+                            option.appendChild(txt);
+                            option.setAttribute("value", data.result[i]._id);
+                            select.insertBefore(option, select.lastChild);
+
+                        }
+                    } else {
+                        document.getElementById('table').innerHTML = ''
+                    }
+                }
+            });
+        }
+        $(document).ready(function () {
+            $("form#form1").submit(function (e) {
+                // $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+                e.preventDefault();
+                var formData = new FormData(this);
+                console.log(formData, "form")
+                $.ajax({
+                    url: host + '/api/v1/admin/adminAddoffers',
+                    type: 'Post',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        // $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+                        if (data.code == 200) {
+                            window.location.replace('/Offers')
+                        } else {
+                            alert('file not uploaded');
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

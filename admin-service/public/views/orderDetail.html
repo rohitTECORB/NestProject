@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Eppy</title>
+
+    <link rel="stylesheet" href="paginate/bs-pagination.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="paginate/pagination.min.js"></script>
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="dist/pagination.min.css">-->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="./css/animate.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="paginate/pagination.min.css">
+    <style type="text/css">
+        .container {
+            margin: 100px auto;
+        }
+        
+        .box,
+        .show {
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        .show {
+            padding: 10px 0;
+        }
+    </style>
+
+</head>
+
+<body onload="Details()">
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <img alt="image" style="width: 120px;" src="../img/pizzaNpintLogo.svg" />
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold" style="margin-left: 50px;"></span>
+                                <!-- <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> -->
+                            </a>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                        <li>
+                            <a href="/dashboard"><i class="fa fa-th-large"></i> <span
+                                class="nav-label">Dashboards</span></a>
+                        </li>
+                        <li>
+
+                            <a href="/user"><i class="fa fa-users"></i> <span class="nav-label">User</span></a>
+
+                        </li>
+                        <li>
+                            <a href="/vendor"><i class="fa fa-user"></i> <span class="nav-label">Merchant</span></a>
+
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-ticket"></i> <span class="nav-label">Orders</span></a>
+                            <ul class="nav nav-second-level">
+                                <!-- <li><a href="/orderPending">Order Pending</a></li> -->
+                                <li><a href="/orderProgress">Order Inprogress</a></li>
+                                <li><a href="/orderComplete">Order Completed</a></li>
+                                <li><a href="/orderCancel">Order Cancelled</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/categories"><i class="fa fa-shopping-bag"></i> <span
+                                class="nav-label">Categories</span></a>
+
+                        </li>
+                        <li>
+                            <a href="/offers"><i class="fa fa-percent"></i> <span class="nav-label">Offers</span></a>
+                        </li>
+                        <li>
+                            <a href="/bannerList"><i class="fa fa-list"></i> <span class=" nav-label">All
+                                Banner</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-life-ring"></i> <span class="nav-labellabellabel">Notification
+                            </span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="/singleNotification"> Single Notification</a></li>
+                                <li><a href="/bulkNotification">Bulk Notification</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/complaints"><i class="fa fa-comment"></i> <span
+                                class="nav-label">Complaints/Reports</span></a>
+
+                        </li>
+                        <li>
+                            <a href="/review"><i class="fa fa-life-ring"></i> <span class=" nav-label">All
+                                Review</span></a>
+                        </li>
+                        <li>
+                            <a href="/FAQs"><i class="fa fa-info-circle"></i> <span class="nav-label">
+                                FAQs</span></a>
+
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-cogs"></i> <span class="nav-label">Settings</span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="/app_version">App Version</a></li>
+                                <li><a href="/settings">Change Password</a></li>
+                            </ul>
+
+                        </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <!-- <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a> -->
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to Eppy Admin </span>
+                        </li>
+
+                        <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-4">
+                    <h2>Order Booking Detail</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/dashboard">Home</a>
+                        </li>
+
+                        <li class="breadcrumb-item active">
+                            <strong>Order Detail </strong>
+                        </li>
+
+                    </ol>
+                </div>
+
+            </div>
+
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ibox " style="width:200%">
+                            <div class="ibox-content">
+                                <h4>User Details: <span style="float: right;" id="userId"></span></h4>
+
+                                <div class="ibox-content">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel-body animated fadeInRight" style="margin-top: 10px;">
+                                                <div class="row no-gutters row-item ng-star-inserted">
+                                                    <div class="col-md-2 pl-0">
+                                                        <div class="img-box text-center">
+                                                            <img id="blah" src="../img/previewImage.png" alt="" style="max-width: 100%; max-height: 118px; width: 118px; border-radius: 10%;">
+
+                                                            <img style="max-width: 100%; max-height: 118px; width: 118px; border-radius: 10%;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-10 pl-0">
+                                                        <div class="content-box">
+                                                            <div class="row">
+                                                                <div class="col-md-6 pl-0">
+                                                                    <p><b>Name : </b><span id="username"></span> </p>
+                                                                    <p><b>Email : </b><span id="useremail"></span></p>
+                                                                    <!-- <p><b>countryCode : </b><span id="countryCode"></span></p></br> -->
+                                                                    <p> <b>Phone No : </b><span id="usermobile"></span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-md-6 pl-0">
+
+                                                                    <p><b>Address :</b><span id="useraddress"></span>
+                                                                    </p>
+                                                                    <!-- <p><b>AvgRating :</b><span id = "rating"></span> </p> -->
+                                                                    <p><b>Status : </b><span id="userstatus"></span>
+                                                                    </p>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ng-star-inserted">
+                                        <div>
+                                            <!-- <h4>User Details: <span style="float: right;" id = "userId"></span></h4> -->
+                                        </div>
+
+                                    </div>
+                                    <!---->
+                                </div>
+                                <h4>Booking Details: <span style="float: right;" id="bookId"></span></h4>
+
+                                <div class="ibox-content mt-2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel-body animated fadeInRight" style="margin-top: 10px;">
+                                                <div class="row no-gutters row-item ng-star-inserted">
+                                                    <div class="col-md-2 pl-0">
+                                                        <div class="img-box text-center">
+                                                            <img id="bookImg" src="../img/previewImage.png" alt="" style="max-width: 100%; max-height: 118px; width: 118px; border-radius: 10%;">
+
+                                                            <img style="max-width: 100%; max-height: 118px; width: 118px; border-radius: 10%;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-10 pl-0">
+                                                        <div class="content-box">
+                                                            <div class="row">
+                                                                <div class="col-md-6 pl-0">
+                                                                    <p><b>Shop Name : </b>
+                                                                        <spam id="vendorname"></spam>
+                                                                    </p>
+                                                                    <p><b>Order Id : </b>
+                                                                        <spam id="orderid"></spam>
+                                                                    </p>
+                                                                    <p><b>Total Items : </b>
+                                                                        <spam id="totalitem"></spam>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-md-6 pl-0">
+
+                                                                    <p><b>Shop Address : </b>
+                                                                        <spam id="vendoraddress"></spam>
+                                                                    </p>
+                                                                    <p><b>Shop Phone No: </b>
+                                                                        <spam id="vendormobile"></spam>
+                                                                    </p>
+                                                                    <p><b>Payment Type : </b>
+                                                                        <spam id="paytype"></spam>
+                                                                    </p>
+                                                                    <!-- <p><b>Language : </b>english </p> -->
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ng-star-inserted">
+                                        <div>
+                                            <h4>Order Details: <span style="float: right;" id="bookId"></span></h4>
+                                        </div>
+                                        <div class="ibox-content" style="border-left:none; border-right:none; border-bottom:none;">
+                                            <div class="col-md-12">
+                                                <div class="panel-body animated fadeInRight" style="margin-top: 10px;">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-7 col-md-4 col-12">
+                                                            <!-- <p id="service"></p></br>
+                                                                        <p id="tax"></p> -->
+                                                        </div>
+                                                        <div class="col-lg-5 col-md-4 col-12">
+                                                            <div class="row">
+                                                                <!-- <p id="service"></p></br>
+                                                                            <p id="tax"></p> -->
+
+                                                                <div class="col-lg-6 col-md-4 col-12">
+                                                                    <!-- <p>
+                                                                    <spam id="name"></spam>
+                                                                    
+                                                                </p> -->
+                                                                    <p id="name"></p>
+
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-4 col-12 text-right">
+
+                                                                    <p id="priceValue"></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-9 col-md-4 col-12">
+                                                            <!-- <p id="service"></p></br>
+                                                                        <p id="tax"></p> -->
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-4 col-12">
+                                                            <div class="row">
+                                                                <!-- <p id="service"></p></br>
+                                                                            <p id="tax"></p> -->
+
+                                                                <div class="col-lg-6 col-md-4 col-12">
+                                                                    <!-- <p>
+                                                                    <spam id="name"></spam>
+                                                                    
+                                                                </p> -->
+                                                                    <p><b>Subtotal</b></p>
+                                                                    <p><b>Discount</b></p>
+                                                                    <p><b>Tax</b></p>
+
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-4 col-12 text-right">
+                                                                    <p id="Subtotal"></p>
+                                                                    <p id="Discount"></p>
+                                                                    <p id="Tax"></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row border-top pt-3">
+                                                        <div class="col-lg-9 col-md-4 col-12">
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-4 col-12">
+                                                            <div class="row">
+
+                                                                <div class="col-lg-6 col-md-4 col-12">
+
+                                                                    <p><b>TotalPayAmount($)</b></p>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-4 col-12 text-right">
+
+                                                                    <p id="totalamount"></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                    </div>
+
+                                    <!---->
+                                </div>
+                                <!-- <div class="ibox-content">
+                                    <div style="font-weight: 400; text-align: center; padding-left: 30rem;">
+                                        <b>:</b> <span id="totalamount"></span></div>
+                                </div> -->
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- testing -->
+        <!-- Mainly scripts -->
+        <script src="./js/jquery-3.1.1.min.js"></script>
+        <script src="./js/popper.min.js"></script>
+        <script src="./js/bootstrap.js"></script>
+        <script src="./js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="./js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+        <!-- Peity -->
+        <script src="./js/plugins/peity/jquery.peity.min.js"></script>
+
+        <!-- Custom and plugin javascript -->
+        <script src="./js/inspinia.js"></script>
+        <script src="./js/plugins/pace/pace.min.js"></script>
+
+        <!-- iCheck -->
+        <script src="./js/plugins/iCheck/icheck.min.js"></script>
+
+        <!-- Peity -->
+        <script src="./js/demo/peity-demo.js"></script>
+        <script type="text/javascript" src="paginate/pagination.min.js"></script>
+        <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            var host = window.location.protocol + "//" + window.location.host;
+            var token = localStorage.getItem("token");
+            if (!token) {
+                localStorage.removeItem("name");
+                localStorage.removeItem("token");
+                window.location.replace('/login');
+            }
+
+            function auth(code) {
+                if (code == 403) {
+                    localStorage.removeItem("name");
+                    localStorage.removeItem("token");
+                    window.location.replace('/login');
+                }
+            }
+
+            function logout() {
+                console.log('logout')
+                $.ajax({
+                    url: host + '/api/v1/admin/logout',
+                    type: 'Get',
+                    // data: formData,
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader('x-auth', token);
+                    },
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        localStorage.removeItem("name");
+                        localStorage.removeItem("token");
+                        window.location.replace('/login');
+                    }
+                })
+            }
+
+            function Details() {
+                var currentLocation = window.location.href;
+                var url = new URL(currentLocation);
+                var c = url.searchParams.get("id");
+                let obj = {
+                    "orderId": c
+                };
+                $.ajax({
+                    url: host + '/api/v1/admin/orderDetails',
+                    type: 'Post',
+                    contentType: 'application/json',
+                    data: JSON.stringify(obj),
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader('x-auth', token);
+                    },
+                    dataType: 'json',
+                    success: function(data, status) {
+
+                        auth(data.code)
+                        if (data.code == 200) {
+                            var array = []
+                            if (data.result.items.length >= 0) {
+                                document.getElementById('priceValue').innerHTML += '<b>' + ' Price(In $)' + '</b>';
+                                for (var i = 0; i < data.result.items.length; i++) {
+                                    var index = i + 1
+
+                                    var price = Number(data.result.items[i].item_price).toFixed(2);
+
+                                    document.getElementById('priceValue').innerHTML += ' </br> ' + '$' + price + '</br>';
+                                }
+                            }
+
+
+                            //  document.getElementById('service').innerHTML += '<b>' + 'Tax Price(In $)' + '</b>' + ' </br> ' + data.result.tax + '  ' + '$' + '</br>';
+                            //  document.getElementById('tax').innerHTML += '<b>' + 'Convience Tax Price(In $)' + '</b>' + ' </br> ' + data.result.convience_tax + '  ' + '$' + '</br>';
+                            if (data.result.userId == null) {
+                                var username = "User not fill Name"
+                                var email = "User not fill Email"
+                                var mobile = "User not fill Mobile"
+                                var bookPic = "../img/previewImage.png"
+                            } else {
+                                var username = data.result.userId.fullName
+                                var email = data.result.userId.email
+                                var mobile = data.result.userId.mobile
+                                var bookPic = data.result.userId.profileImg ? data.result.userId.profileImg : "../img/previewImage.png"
+                            }
+
+                            //  var  = Math.round(( + Number.EPSILON) * 100) / 100;
+                            var todecimal = Number(data.result.grand_total).toFixed(2);
+                            var sub_total = Number(data.result.sub_total).toFixed(2);
+                            var tax = Number(data.result.tax).toFixed(2);
+                            var promoCode_Amount = Number(data.result.promoCode_Amount).toFixed(2);
+
+                            document.getElementById('name').innerHTML += '<b>' + 'Item Name' + '</b>';
+                            for (var i = 0; i < data.result1.length; i++) {
+                                var index = i + 1
+                                    // var price = data.result.servicePrice;
+                                var name = data.result1[i].name;
+                                document.getElementById('name').innerHTML += '</br>' + index + '.' + "  " + " " + " " + name + '</br>';
+
+                                // document.getElementById('name').innerHTML += '<b>' + 'Service' + '</b>' + ' . ' + service[i] + '</br>';
+
+
+                                document.getElementById('username').innerHTML = username;
+                                document.getElementById('useraddress').innerHTML = data.result.address ? data.result.address : 'N/A';
+                                document.getElementById('userstatus').innerHTML = data.result.status;
+                                document.getElementById('useremail').innerHTML = email,
+                                    document.getElementById('usermobile').innerHTML = mobile,
+                                    //document.getElementById('countryCode').innerHTML = data.result.userId.countryCode  ? data.result.userId.countryCode : 'N/A',
+                                    document.getElementById('orderid').innerHTML = data.result.orderId,
+                                    document.getElementById('totalitem').innerHTML = data.result.items.length,
+                                    // document.getElementById('name').innerHTML = name1,
+
+                                    // document.getElementById('rating').innerHTML = data.result.salonDetail.avgRating;   
+                                    document.getElementById('vendorname').innerHTML = data.result.vendorId.fullName;
+                                document.getElementById('vendoraddress').innerHTML = data.result.vendorId.address;
+                                //document.getElementById('vendoremail').innerHTML = data.result.vendorId.email;
+                                document.getElementById('vendormobile').innerHTML = data.result.vendorId.mobile;
+                                document.getElementById('paytype').innerHTML = data.result.paymentType;
+                                document.getElementById('bookId').innerHTML = '<b>' + 'BookingId' + '</b>' + ' : ' + data.result.orderId
+                                document.getElementById('blah').src = bookPic;
+                                document.getElementById('bookImg').src = data.result.vendorId.profileImg ? data.result.vendorId.profileImg : bookPic;
+                                document.getElementById('totalamount').innerHTML = '<b>' + '  ' + '  ' + '$' + todecimal + '</b>';
+                                document.getElementById('Subtotal').innerHTML = '<b>' + '$' + sub_total + '</b>';
+                                document.getElementById('Discount').innerHTML = '<b>' + '$' + promoCode_Amount + '</b>';
+                                document.getElementById('Tax').innerHTML = '<b>' + '$' + tax + '</b>';
+                                document.getElementById('userId').innerHTML = '<b>' + 'UserId' + '</b>' + ' : ' + data.result.userId._id
+                            }
+                        } else {
+                            console.log('something went wrong')
+                        }
+                    }
+                })
+            }
+        </script>
+</body>
+
+</html>

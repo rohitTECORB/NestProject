@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <script>
+        var jqOld = jQuery.noConflict();
+        jqOld(function () {
+            jqOld("#fromDate").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        })
+    </script>
+    <script>
+        var jqOld = jQuery.noConflict();
+        jqOld(function () {
+            jqOld("#toDate").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        })
+    </script> -->
+
+
+    <style type="text/css">
+        .container {
+            margin: 100px auto;
+        }
+
+        .box,
+        .show {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .show {
+            padding: 10px 0;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .table-dropdown .show {
+            margin: 0px !important;
+            text-align: left !important;
+            padding: 0px !important;
+        }
+
+        .table-dropdown .dropdown .dropdown-toggle {
+            padding: 0 !important;
+        }
+
+        .table-dropdown .dropdown .dropdown-toggle::after {
+            display: none;
+        }
+
+        input::placeholder {
+            padding-left: 8px !important;
+        }
+
+        @media only screen and (max-width: 992px) {
+            .lastline {
+                margin: 0px !important;
+                /* width: auto !important; */
+                display: inline-block !important;
+            }
+
+           
+        }
+      
+.loader  {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    display: block;
+    opacity: 0.9;
+    background-color: rgb(0, 0,0, 20%);
+    z-index: 9999;
+    text-align: center;
+}
+
+.loader-content {
+    position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  margin: -76px 0 0 -76px;
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #34db95;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+      
+    </style>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Eppy</title>
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="./css/animate.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/paginate/pagination.min.css">
+    <style type="text/css">
+        .container {
+            margin: 100px auto;
+        }
+
+        .box,
+        .show {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .show {
+            padding: 10px 0;
+        }
+    </style>
+
+</head>
+
+<body onload="details()">
+    <div class="loader" id='loader1'>
+        <div class="loader-content"></div>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <img alt="image" style="width: 120px;" src="../img/pizzaNpintLogo.svg" />
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold" style="margin-left: 50px;"></span>
+                                <!-- <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> -->
+                            </a>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    <li>
+                        <a href="/dashboard"><i class="fa fa-th-large"></i> <span
+                                class="nav-label">Dashboards</span></a>
+                    </li>
+                    <li >
+
+                        <a href="/user"><i class="fa fa-users"></i> <span class="nav-label">User</span></a>
+
+                    </li>
+                    <li >
+                        <a href="/vendor"><i class="fa fa-user"></i> <span class="nav-label">Merchant</span></a>
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-ticket"></i> <span class="nav-label">Orders</span></a>
+                        <ul class="nav nav-second-level">
+                            <!-- <li><a href="/orderPending">Order Pending</a></li> -->
+                            <li><a href="/orderProgress">Order Inprogress</a></li>
+                            <li><a href="/orderComplete">Order Completed</a></li>
+                            <li><a href="/orderCancel">Order Cancelled</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/categories"><i class="fa fa-shopping-bag"></i> <span
+                                class="nav-label">Categories</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/offers"><i class="fa fa-percent"></i> <span class="nav-label">Offers</span></a>
+                    </li>
+                    <li>
+                        <a href="/bannerList"><i class="fa fa-list"></i> <span class=" nav-label">All
+                                Banner</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-life-ring"></i> <span class="nav-labellabellabel">Notification
+                            </span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/singleNotification"> Single Notification</a></li>
+                            <li><a href="/bulkNotification">Bulk Notification</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/complaints"><i class="fa fa-comment"></i> <span
+                                class="nav-label">Complaints/Reports</span></a>
+
+                    </li>
+                    <li   >
+                        <a href="/review"><i class="fa fa-life-ring"></i> <span class=" nav-label">All
+                                Review</span></a>
+                    </li>
+                    <li class='active'>
+                        <a href="/FAQs"><i class="fa fa-info-circle"></i> <span class="nav-label">
+                                FAQs</span></a>
+
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-cogs"></i> <span
+                                class="nav-label">Settings</span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/app_version">App Version</a></li>
+                            <li><a href="/settings">Change Password</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <!-- <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a> -->
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to Eppy Admin </span>
+                        </li>
+
+                        <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>FAQ
+                        <a href="/addFAQ"> <button class="btn btn-sm btn-primary float-right">
+                                Add FAQ</button></a>
+                    </h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/dashboard">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <strong> FAQ </strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight" id="faqData"></div>
+            <div class="box">
+                <ul id="example-1" class="pagination"></ul>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="./js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Peity -->
+    <script src="./js/plugins/peity/jquery.peity.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="./js/inspinia.js"></script>
+    <script src="./js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="./js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Peity -->
+    <script src="./js/demo/peity-demo.js"></script>
+    <script type="text/javascript" src="/paginate/pagination.min.js"></script>
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        var token = localStorage.getItem("token");
+        var host = window.location.protocol + "//" + window.location.host;
+        if (!token) {
+            // localStorage.removeItem("name");
+            // localStorage.removeItem("token");
+            // window.location.replace('/login');
+        }
+
+        function auth(code) {
+            if (code == 403) {
+                // localStorage.removeItem("name");
+                // localStorage.removeItem("token");
+                // window.location.replace('/login');
+            }
+        }
+
+        function logout() {
+           
+            $.ajax({
+                url: host + '/api/v1/admin/logout',
+                type: 'Get',
+                // data: formData,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    auth(data.code)
+                    localStorage.removeItem("name");
+                    localStorage.removeItem("token");
+                    window.location.replace('/login');
+                }
+            })
+        }
+function details(){
+        let obj = {
+            'pageNo': 1,
+            'perPage': 10
+        }
+        $("#loader1").show("loader")
+        $.ajax({
+            url: host + '/api/v1/admin/showAndSearchFAQ',
+            type: 'Post',
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('x-auth', token);
+            },
+            dataType: 'json',
+            success: function (data) {
+               // auth(data.code)
+                if (data.code == 200 ) {
+                        $("#loader1").hide("loader")
+                    }
+               
+                var x = data.total
+                $('#example-1').pagination({
+                    total: x,
+                    current: 1,
+                    length: 10,
+                    prev: 'Previous',
+                    next: 'Next',
+                    click: function (options, $target) {
+                        
+                        let obj = {
+                            'pageNo': options.current,
+                            'perPage': options.length
+                        }
+                        $("#loader1").show("loader")
+                        $.ajax({
+                            url: host + '/api/v1/faq/showAndSearchFAQ',
+                            type: 'Post',
+                            contentType: 'application/json',
+                            data: JSON.stringify(obj),
+                            // beforeSend: function (xhr) {
+                            //     xhr.setRequestHeader('x-auth', token);
+                            // },
+                            dataType: 'json',
+                            success: function (data) {
+                                $("#loader1").hide("loader")
+                                auth(data.code)
+                                if (data.code == 200 && data.result.length) {
+                                    $("#faqData").html(' ')
+                                    for (var i = 0; i < data.result.length; i++) {
+                                        if (data.result[i].language == 'fr') {
+                                            var lang = 'French'
+                                        } else {
+                                            var lang = 'English'
+                                        }
+                                        document.getElementById('faqData').innerHTML += '<div class="faq-item">' +
+                                            '<div class="row">' +
+                                            '<div class="col-md-12"> <b>Question : </b>  ' +
+                                            data.result[i].question + '</br>' +
+                                            '<b>Answer :</b>  ' + data.result[i].answer + '<br>' +
+                                            // '<b>Question_Danish :</b>  ' + data.result[i].question_dn + '<br>' +
+                                            // '<b>Answer_Danish :</b>  ' + data.result[i].answer_dn + '<br>' +
+                                            // '<b>Question_Swedan :</b>  ' + data.result[i].question_sw + '<br>' +
+                                            // '<b>Answer_Swedan :</b>  ' + data.result[i].answer_sw + '<br>' +
+
+                                            '<a href="/editfaq"> </a><button type="button" class="btn btn-sm btn-primary float-right" style="margin :5px" id="Action_button" onclick= View(' + '\'' + data.result[i]._id + '\'' + ')>' + 'Edit FAQ' + '</button>' +
+                                            '<button type="button" class="btn btn-sm btn-danger  float-right" style="margin :5px" id="Action_button" onclick= dlt(' + '\'' + data.result[i]._id + '\'' + ')>' + 'Delete' + '</button>' +
+                                            '</div>' +
+                                            '</div>' +
+                                            '</div>'
+                                    }
+                                } else {
+                                    document.getElementById('faqData').innerHTML = null;
+                                }
+                            }
+                        })
+                        $target.next(".show").text('Current: ' + options.current);
+
+                    }
+                });
+                if (data.code == 200 ) {
+                    for (var i = 0; i < data.result.length; i++) {
+                        if (data.result[i].language == 'fr') {
+                            var lang = 'French'
+                        } else {
+                            var lang = 'English'
+                        }
+                        document.getElementById('faqData').innerHTML += '<div class="faq-item">' +
+                            '<div class="row">' +
+                            '<div class="col-md-12"> <b>Question : </b>  ' +
+                            data.result[i].question + '</br>' +
+                            '<b>Answer :</b>  ' + data.result[i].answer + '<br>' +
+                            // '<b>Question_Danish :</b>  ' + data.result[i].question_dn + '<br>' +
+                            // '<b>Answer_Danish :</b>  ' + data.result[i].answer_dn + '<br>' +
+                            // '<b>Question_Swedan :</b>  ' + data.result[i].question_sw + '<br>' +
+                            // '<b>Answer_Swedan :</b>  ' + data.result[i].answer_sw + '<br>' +
+
+                            '<a href="/editfaq"> </a><button type="button" class="btn btn-sm btn-primary float-right" style="margin: 5px;" id="Action_button" onclick= View(' + '\'' + data.result[i]._id + '\'' + ')>' + 'Edit FAQ' + '</button>' +
+                            '<button type="button" class="btn btn-sm btn-danger  float-right" style="margin: 5px;" id="Action_button" onclick= dlt(' + '\'' + data.result[i]._id + '\'' + ')>' + 'Delete' + '</button>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                    }
+                } else {
+                    document.getElementById('faqData').innerHTML = null;
+                }
+            },
+        });
+    }
+        function dlt(_id) {
+            let obj = {
+                'faqId': _id
+            }
+            swal({
+                title: "Are you sure?",
+                text: "Your will not be able to recover this  file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, Delete it!",
+                cancelButtonText: "No, leave pls!",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: host + '/api/v1/faq/dltFaq',
+                            type: 'Post',
+                            contentType: 'application/json',
+                            data: JSON.stringify(obj),
+                            // beforeSend: function (xhr) {
+                            //     xhr.setRequestHeader('x-auth', token);
+                            // },
+                            dataType: 'json',
+                            success: function (data, status) {
+                                if (data.code == 200) {
+                                   alert( data.message)
+                                    window.location.replace('/FAQs');
+                                } else {
+                                    alert(data.message)
+                                }
+                            }
+                        })
+                    } else {
+                        swal("Cancelled", "Your file is safe :");
+                    }
+                })
+        }
+
+        function View(_id) {
+            {
+                window.location.href = "/EditFaq?id=" + _id
+            }
+        }
+    </script>
+
+</body>
+
+</html>

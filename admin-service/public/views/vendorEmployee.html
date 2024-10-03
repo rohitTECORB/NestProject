@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Eppy</title>
+    <link rel="icon" href="../img/pizzaNpintLogo.png" type="image">
+    <link rel="stylesheet" href="paginate/bs-pagination.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="paginate/pagination.min.js"></script>
+
+    <!--<link rel="stylesheet" href="dist/pagination.min.css">-->
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="./css/animate.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="paginate/pagination.min.css">
+
+
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" />
+    <link rel="stylesheet" href="../css/intlTelInput.css">
+    <link rel='stylesheet' type="text/css" href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+    <link rel='stylesheet' type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css'>
+    <link rel='stylesheet' type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.2/css/intlTelInput.css'>
+
+    <script>
+        var jqOld = jQuery.noConflict();
+        jqOld(function() {
+            jqOld("#startDate").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        })
+    </script>
+    <script>
+        var jqOld = jQuery.noConflict();
+        jqOld(function() {
+            jqOld("#endDate").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        })
+    </script>
+
+    <style type="text/css">
+        .container {
+            margin: 100px auto;
+        }
+        
+        .modal-header {
+            border-bottom: 0px !important;
+        }
+        
+        .modal-footer {
+            border-top: 0px !important;
+        }
+        
+        .container {
+            margin: 100px auto;
+        }
+        
+        .box,
+        .show {
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        .show {
+            padding: 10px 0;
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .table-dropdown .show {
+            margin: 0px !important;
+            text-align: left !important;
+            padding: 0px !important;
+        }
+        
+        .table-dropdown .dropdown .dropdown-toggle {
+            padding: 0 !important;
+        }
+        
+        .table-dropdown .dropdown .dropdown-toggle::after {
+            display: none;
+        }
+        
+        input::placeholder {
+            padding-left: 8px !important;
+        }
+        
+        .loader {
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            position: fixed;
+            display: block;
+            opacity: 0.9;
+            background-color: rgb(0, 0, 0, 20%);
+            z-index: 9999;
+            text-align: center;
+        }
+        
+        .loader-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 60px;
+            height: 60px;
+            margin: -76px 0 0 -76px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+        
+        @media only screen and (max-width: 992px) {
+            .lastline {
+                margin: 0px !important;
+                /* width: auto !important; */
+                display: inline-block !important;
+            }
+            /* .col-lg-3 .col-md-12 .col-12{width: auto !important;} */
+        }
+    </style>
+
+</head>
+
+<body onload="subDetail()">
+    <!-- <div class="loader" id='loader1'>
+        <div class="loader-content"></div>
+    </div> -->
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element" style="text-align: center;">
+                            <img alt="image" class="" style="width: 125px;" src="../img/pizzaNpintLogo.svg" />
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold">Eppy  Admin</span>
+                                <!-- <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> -->
+                            </a>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+
+                    </li>
+                    <li>
+
+                        <a href="/user"><i class="fa fa-users"></i> <span class="nav-label">User</span></a>
+
+                    </li>
+                    <li class="active">
+                        <a href="/vendor"><i class="fa fa-user"></i> <span class="nav-label">Merchant</span></a>
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-ticket"></i> <span class="nav-label">Orders</span></a>
+                        <ul class="nav nav-second-level">
+                            <!-- <li><a href="/orderPending">Order Pending</a></li> -->
+                            <li><a href="/orderProgress">Order Inprogress</a></li>
+                            <li><a href="/orderComplete">Order Completed</a></li>
+                            <li><a href="/orderCancel">Order Cancelled</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/categories"><i class="fa fa-shopping-bag"></i> <span
+                                class="nav-label">Categories</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/offers"><i class="fa fa-percent"></i> <span class="nav-label">Offers</span></a>
+                    </li>
+                    <li>
+                        <a href="/bannerList"><i class="fa fa-list"></i> <span class=" nav-label">All
+                                Banner</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-life-ring"></i> <span class="nav-labellabellabel">Notification
+                            </span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/singleNotification"> Single Notification</a></li>
+                            <li><a href="/bulkNotification">Bulk Notification</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/complaints"><i class="fa fa-comment"></i> <span
+                                class="nav-label">Complaints/Reports</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/review"><i class="fa fa-life-ring"></i> <span class=" nav-label">All
+                                Review</span></a>
+                    </li>
+                    <li>
+                        <a href="/FAQs"><i class="fa fa-info-circle"></i> <span class="nav-label">
+                                FAQs</span></a>
+
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-cogs"></i> <span
+                                class="nav-label">Settings</span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/app_version">App Version</a></li>
+                            <li><a href="/settings">Change Password</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                                class="fa fa-bars"></i> </a>
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to Eppy Admin </span>
+                        </li>
+
+                        <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-12">
+                    <h2>Employee</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/dashboard">Home</a>
+                        </li>
+
+                        <li class="breadcrumb-item active">
+
+                            <strong>Employee List</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <div class="row">
+
+                                    <div class="col-lg-12" style="text-align: right;">
+                                        <button type="button" style="height: 36px;" class="btn btn-primary btn-success" data-toggle="modal" data-target="#myModal5">
+                                            <i class="fa fa-plus" aria-hidden="true"></i><span
+                                                style="font-weight: 700; padding-left: 10px;">Add
+                                            </span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="table-responsive">
+                                    <table class="table table-hover" style="margin-bottom: 6rem;">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Image</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Contact No.</th>
+
+                                                <th>Profession</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="alert alert-primary hide" id="noData" role="alert">
+                                    No data found
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box" id="page1">
+                    <ul id="example-1" class="pagination"></ul>
+                </div>
+
+            </div>
+            <div class="footer">
+                <div>
+                    Copyright Eppy &copy; 2021-2022
+                </div>
+            </div>
+        </div>
+        <div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true">
+            <form id="form2" method="post" enctype="multipart/form-data" role="form">
+
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Edit Employee</h4>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="email">Employee Name</label>
+                                        <input type="text" class="form-control" placeholder="Enter Employee Name" id="name" name="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="pwd">Email</label>
+                                        <input type="text" class="form-control" placeholder="Enter email" id="email" name="email">
+                                    </div>
+                                </div>
+                                <div class="form-group"  style="display: none;">
+                                    <label for="email">id</label>
+                                    <input type="text" class="form-control" 
+                                        id=Id name="Id">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <!-- <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="email"> Contact No.</label>
+                                        <input type="Number" class="form-control" placeholder="Enter Number" id="mobile"
+                                            name="mobile">
+                                    </div>
+                                </div> -->
+                                    <div class="col-lg-6">
+                                        <h4>Country Code / Phone No.</h4>
+                                        <div class="row mx-0">
+                                            <div class="col-4 tell-code pl-1">
+                                                <input type="tel" id="countryCode" name="countryCode" class="form-control mobile" placeholder="+1" required />
+                                            </div>
+                                            <div class="col-8 tell-num pr-1">
+                                                <input type="text" id="mobile" name="mobile" class="form-control" placeholder="Enter  Contact Number" minlength="10" maxlength="10" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="pwd">Profession</label>
+                                            <input type="text" class="form-control" placeholder="Enter Profession" id="role1" name="role1" value="kitchen manager" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+                        <div class="row idSection">
+                            <div class="col-lg-4 col-md-5 col-4 form-group">
+                                <div class="imageUpload ">
+                                    <h6>Width(200px)*Height(200px)</h6>
+                                    <div class="image-box">
+                                        <img id="blah" src="" alt="" style="width:120px; height:130px; ">
+                                    </div>
+                                    <label for="image">Choose Img</label>
+                                    <div class="controls" style="display: none;">
+                                        <input type='file' accept="image/*" name='image' id="image">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" value="submit" id="Submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+    <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog" aria-hidden="true">
+        <form id="form" method="post" enctype="multipart/form-data" role="form">
+
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Add Employee</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label for="email">Employee Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter Employee Name" id="name" name="name" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label for="pwd">Email</label>
+                                    <input type="text" class="form-control" placeholder="Enter Email" id="email" name="email" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="email"> Contact No.</label>
+                                        <input type="Number" class="form-control" placeholder="Enter Number" id="mobile"
+                                            name="mobile" required>
+                                    </div>
+                                </div> -->
+                            <div class="col-lg-6">
+                                <h4>Country Code / Phone No.</h4>
+                                <div class="row mx-0">
+                                    <div class="col-4 tell-code pl-1">
+                                        <input type="tel" id="countryCode" name="countryCode" class="form-control mobile" placeholder="+1" required />
+                                    </div>
+                                    <div class="col-8 tell-num pr-1">
+                                        <input type="text" id="mobile" name="mobile" class="form-control" placeholder="Enter  Contact Number" minlength="10" maxlength="10" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label for="pwd">Profession</label>
+                                    <input type="text" class="form-control" placeholder="Enter Profession" id="role1" name="role1" value="kitchen manager" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-3 col-md-6 col-12">
+
+                                <div class="form-group" style="display: none;">
+                                    <label for="email">id</label>
+                                    <input type="text" class="form-control" id=id name="id">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="pwd">Status</label>
+                                    <select class="form-control" id="sel3" name="isActive">
+                                                <option value=true>Activate</option>
+                                                <option value=false>Deactivate</option>
+                                            </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row idSection">
+                        <div class="col-lg-4 col-md-5 col-4 form-group">
+                            <div class="imageUpload ">
+                                <h6>Width(200px)*Height(200px)</h6>
+                                <div class="image-box">
+                                    <img id="blah" src="../img/previewImage.png" alt="" style="width:120px; height:130px; ">
+                                </div>
+                                <label for="image">Choose Img</label>
+                                <div class="controls" style="display: none;">
+                                    <input type='file' accept="image/*" name='image' id="image">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" value="submit" id="Submit">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Mainly scripts -->
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Peity -->
+    <script src="../js/plugins/peity/jquery.peity.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="../js/inspinia.js"></script>
+    <script src="../js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="../js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Peity -->
+    <script src="../js/demo/peity-demo.js"></script>
+    <script type="text/javascript" src="../paginate/pagination.min.js"></script>
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js'></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.2/js/intlTelInput.js'></script>
+    <script>
+        var token = localStorage.getItem("token");
+        var host = window.location.protocol + "//" + window.location.host;
+        if (!token) {
+            localStorage.removeItem("name");
+            localStorage.removeItem("token");
+            window.location.replace('/login');
+        }
+
+        function auth(code) {
+            if (code == 403) {
+                localStorage.removeItem("name");
+                localStorage.removeItem("token");
+                window.location.replace('/login');
+            }
+        }
+
+
+        function logout() {
+            console.log('logout')
+            $.ajax({
+                url: host + '/api/v1/admin/logout',
+                type: 'Get',
+                // data: formData,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    auth(data.code)
+                    if (data.code == 200) {
+                        localStorage.removeItem("name");
+                        localStorage.removeItem("token");
+                        window.location.replace('/login');
+                    } else {
+                        alert(data.message)
+                    }
+                }
+            })
+        }
+
+        function mobileNoselect() {
+
+            if ($('#form2').length) {
+                $(".mobile").intlTelInput();
+                $(".mobile").intlTelInput("setNumber", "+1");
+            };
+        };
+
+        //* Select js
+        function nice_Select() {
+            if ($('.product_select').length) {
+                $('select').niceSelect();
+            };
+        };
+        // Function Calls* 
+        // verificationForm ();
+
+        mobileNoselect();
+        nice_Select();
+
+
+
+
+
+        // to get the id by window url
+        var currentLocation = window.location.href;
+        var url = new URL(currentLocation);
+        var c = url.searchParams.get("id");
+        document.getElementById('id').value = c
+
+        function subDetail() {
+
+
+            var obj = {
+                'pageNo': 1,
+                'perPage': 10,
+                'vendorId': c
+
+            }
+            $.ajax({
+
+                url: host + '/api/v1/admin/employeeDetails',
+                type: 'Post',
+                contentType: 'application/json',
+                data: JSON.stringify(obj),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                dataType: 'json',
+
+                success: function(data, status) {
+                    auth(data.code)
+                    if (data.code == 200) {
+                        $("#loader1").hide("loader")
+                    }
+
+                    if (data.code == 200 && data.result.length != 0) {
+                        $("#table2").removeClass("hide")
+                        $("#noData").removeClass("show")
+                        $("#page1").removeClass("hide")
+
+                        var x = data.Total
+                        $('#example-1').pagination({
+                            total: x,
+                            current: 1,
+                            length: 10,
+                            prev: 'Previous',
+                            next: 'Next',
+                            click: function(options, $target) {
+                                let obj = {
+                                    'pageNo': options.current,
+                                    'perPage': options.length,
+                                    'vendorId': c
+                                }
+
+                                $.ajax({
+                                    url: host + '/api/v1/admin/employeeDetails',
+                                    type: 'Post',
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(obj),
+                                    beforeSend: function(xhr) {
+                                        xhr.setRequestHeader('x-auth', token);
+                                    },
+                                    dataType: 'json',
+                                    success: function(data, status) {
+                                        auth(data.code)
+                                        if (data.code == 200 && data.result.length != 0) {
+                                            $("#table").html(' ');
+
+                                            for (var i = 0; i < data.result.length; i++) {
+
+                                                if (data.result[i].isActive == true) {
+                                                    var x = 'Deactive'
+                                                    var y = 'Active'
+                                                } else {
+                                                    var x = 'Active'
+                                                    var y = 'Deactive'
+                                                }
+                                                if (!data.result[i].profileImg == '') {
+                                                    var image = data.result[i].profileImg
+                                                } else {
+                                                    var image = "../img/previewImage.png"
+                                                }
+
+                                                var index = i + 1 + (obj.perPage * (obj.pageNo - 1));
+
+                                                document.getElementById('table').innerHTML += '<tr >' +
+                                                    '<td >' + index +
+                                                    '<td> <img src="' + image + '" alt="" style="width:100px; height:100px; border-radius: 100px;">' +
+                                                    '<td>' + data.result[i].name + '<td>' + data.result[i].email +
+                                                    '<td>' + data.result[i].mobileNo + '<td>' + data.result[i].role +
+                                                    '<td><span class="label label-primary">' + y +
+                                                    '<td class="table-dropdown">' +
+                                                    '<div class="dropdown">' +
+                                                    '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                                    '<img src="' + "../img/moreicon1.png" + '" >  </button > ' +
+                                                    '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                                                    '<a class="dropdown-item"  onclick ="UpdatedataStatus(' + '\'' + data.result[i]._id + '\'' + ')">Active</a>' +
+                                                    '<a class="dropdown-item"   onclick = "UpdatedataStatus(' + '\'' + data.result[i]._id + '\'' + ')">Deactive</a>' +
+                                                    '<a class="dropdown-item"   onclick = "View(' + '\'' + data.result[i]._id + '\'' + ')" >Edit</a>' +
+                                                    // '<a class="dropdown-item"   onclick = "size(' + '\'' + data.result[i]._id + '\'' + ')" >Size</a>' +
+                                                    // '<a class="dropdown-item"   onclick = "addon(' + '\'' + data.result[i]._id + '\'' + ')" >AddOn</a>' +
+                                                    //  '<a class="dropdown-item"   onclick = "addonCategory(' + '\'' + data.result[i]._id + '\'' + ')" >AddOnCategory</a>' +
+                                                    '</div></div>'
+                                            }
+                                        }
+
+                                    }
+
+                                })
+                                $target.next(".show").text('Current: ' + options.current);
+
+                            }
+                        })
+                        $("#table").html(' ');
+                        for (var i = 0; i < data.result.length; i++) {
+
+                            var index = i + 1 + (obj.perPage * (obj.pageNo - 1));
+                            if (data.result[i].isActive == true) {
+                                var x = 'Deactive'
+                                var y = 'Active'
+                            } else {
+                                var x = 'Active'
+                                var y = 'Deactive'
+                            }
+                            if (!data.result[i].profileImg == '') {
+                                var image = data.result[i].profileImg
+                            } else {
+                                var image = "../img/previewImage.png"
+                            }
+                            document.getElementById('table').innerHTML += '<tr >' +
+                                '<td >' + index +
+                                '<td> <img src="' + image + '" alt="" style="width:100px; height:100px; border-radius: 100px;">' +
+                                '<td>' + data.result[i].name + '<td>' + data.result[i].email +
+                                '<td>' + data.result[i].mobileNo + '<td>' + data.result[i].role +
+                                '<td><span class="label label-primary">' + y +
+                                '<td class="table-dropdown">' +
+                                '<div class="dropdown">' +
+                                '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                '<img src="' + "../img/moreicon1.png" + '" >  </button > ' +
+                                '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                                '<a class="dropdown-item"  onclick ="UpdatedataStatus(' + '\'' + data.result[i]._id + '\'' + ')">Active</a>' +
+                                '<a class="dropdown-item"   onclick = "UpdatedataStatus(' + '\'' + data.result[i]._id + '\'' + ')">Deactive</a>' +
+                                '<a class="dropdown-item"  data-toggle="modal" data-target="#myModal6" onclick = "View(' + '\'' + data.result[i]._id + '\'' + ')" >Edit</a>' +
+                                // '<a class="dropdown-item"   onclick = "size(' + '\'' + data.result[i]._id + '\'' + ')" >Size</a>' +
+                                // '<a class="dropdown-item"   onclick = "addon(' + '\'' + data.result[i]._id + '\'' + ')" >AddOn</a>' +
+                                // '<a class="dropdown-item"   onclick = "addonCategory(' + '\'' + data.result[i]._id + '\'' + ')" >AddOnCategory</a>' +
+
+
+                                '</div></div>'
+                        }
+                    } else {
+                        $("#table").html(' ');
+                        $("#table2").addClass("hide");
+                        $("#noData").addClass("show");
+                        $("#page1").hide();
+
+                    }
+                }
+
+            });
+        }
+
+
+        function UpdatedataStatus(user_id) {
+
+            var num = (user_id)
+            $(document).on('click', '.dropdown-menu a', function() {
+                var a = ($(this).text());
+                if (a === 'Active') {
+                    var updte = 'Active'
+                } else {
+                    var updte = 'Deactive'
+                }
+                let obj = {
+                    "user_id": num,
+                    "status": updte
+                };
+                swal({
+                        title: "Are you sure?",
+                        text: "Ready to Action!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, Take Action!",
+                        cancelButtonText: "No, leave pls!",
+                        closeOnConfirm: false,
+                        closeOnCancel: true
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                url: host + '/api/v1/admin/employeeStatus',
+                                type: 'Post',
+                                contentType: 'application/json',
+                                data: JSON.stringify(obj),
+                                beforeSend: function(xhr) {
+                                    xhr.setRequestHeader('x-auth', token);
+                                },
+                                dataType: 'json',
+                                success: function(data, status) {
+                                    auth(data.code)
+                                    if (data.code == 200) {
+
+                                        alert(data.message)
+                                        window.location.reload()
+                                    } else {
+                                        alert(data.message)
+                                    }
+                                }
+                            });
+                        } else {
+                            swal("Cancelled", "Your file is safe :");
+                        }
+                    });
+            })
+        }
+
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+            const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+                "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+            ];
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+            var y = monthNames[month - 1]
+                // console.log('month',y)
+            return [day, monthNames[month - 1], year].join('-');
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(100)
+                        .height(100);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function readURL1(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah1')
+                        .attr('src', e.target.result)
+                        .width(100)
+                        .height(100);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(".image-box").click(function(event) {
+            var previewImg = $(this).children("img");
+
+            $(this)
+                .siblings()
+                .children("input")
+                .trigger("click");
+
+            $(this)
+                .siblings()
+                .children("input")
+                .change(function() {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        var urll = e.target.result;
+                        $(previewImg).attr("src", urll);
+                        previewImg.show();
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                });
+        });
+
+        $("#form").submit(function(e) {
+
+            e.preventDefault();
+            var formData = new FormData(this);
+            formData.append('vendorId', c);
+            formData.append('role', 'Kitchen_manager');
+            $.ajax({
+                url: host + '/api/v1/admin/employeeAdd',
+                type: 'Post',
+                data: formData,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                contentType: false,
+                processData: false,
+                success: function(data, status) {
+                    // $('#myModal5').modal('hide');
+                    alert(data.message);
+                    window.location.reload('');
+                }
+            });
+        });
+
+        $("#form2").submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            formData.append('role', 'Kitchen_manager');
+            //formData.append('Id', c);
+            $.ajax({
+                url: host + '/api/v1/admin/employeeDetailsedit',
+                type: 'Post',
+                data: formData,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                contentType: false,
+                processData: false,
+                success: function(data, status) {
+                    // $('#myModal6').modal('hide');
+                    alert(data.message);
+                    window.location.reload('');
+                }
+            });
+        });
+
+        function View(user_id) {
+
+            var obj = {
+                "user_id": user_id
+            }
+            $.ajax({
+                url: host + '/api/v1/admin/employeeProfiledetails',
+                type: 'Post',
+                contentType: 'application/json',
+                data: JSON.stringify(obj),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                dataType: 'json',
+
+                success: function(data, status) {
+                    auth(data.code)
+                    console.log(data.result._id);
+                    if (data.code == 200) {
+                        document.getElementById('name').value = data.result.name ? data.result.name : 'N/A',
+                            document.getElementById('email').value = data.result.email ? data.result.email : 'N/A';
+                        document.getElementById('mobile').value = data.result.mobileNo ? data.result.mobileNo : "-";
+                        document.getElementById('blah').src = data.result.profileImg ? data.result.profileImg : '../img/previewImage.png'
+                        document.getElementById('Id').value = data.result._id
+                        document.getElementById('countryCode').value = data.result.countryCode ? data.result.countryCode : "+1"
+                        document.getElementById('role').value = data.result.role ? data.result.role : 'N/A';
+
+                        
+
+                    } else {
+                        document.getElementById('question').innerHTML = '';
+                        document.getElementById('answer').innerHTML = '';
+                    }
+                }
+
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>

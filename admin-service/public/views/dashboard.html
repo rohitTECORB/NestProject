@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+       
+        
+
+        .center {
+            margin: auto;
+            width: 60%;
+            padding: 10px;
+        }
+        .ibox-title1 {
+  background-color: #006699;
+  border-color: #0000FF;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px;
+  color: #FFFFFF;
+  margin-bottom: 0;
+  padding: 15px 90px 8px 15px;
+  min-height: 48px;
+  position: relative;
+  clear: both;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 2px 2px 0 0;
+}
+.ibox-content1 {
+  background-color: #FFFFFF;
+  color: inherit;
+  padding: 15px 20px 20px 20px;
+  border-color: #0000FF;
+  border-image: none;
+  border-style: solid;
+  border-width: 1px;
+}
+.progress-bar3 {
+  background-color: #ff0000;
+}
+.progress-bar2 {
+  background-color: #00ffff;
+}
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Eppy</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/c3/c3.min.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+</head>
+
+<body onload="choose3()">
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <img alt="image"  style="width: 120px;" style="width: 120px;"
+                                src="../img/pizzaNpintLogo.svg" />
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold" style="margin-left: 50px;">Admin</span>
+                            </a>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li class="active">
+                        <a href="/dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+
+                    </li>
+                    <li >
+
+                        <a href="/user"><i class="fa fa-users"></i> <span class="nav-label">User</span></a>
+
+                    </li>
+                    <li >
+                        <a href="/vendor"><i class="fa fa-user"></i> <span class="nav-label">Merchant</span></a>
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-ticket"></i> <span class="nav-label">Orders</span></a>
+                        <ul class="nav nav-second-level">
+                            <!-- <li><a href="/orderPending">Order Pending</a></li> -->
+                            <li><a href="/orderProgress">Order Inprogress</a></li>
+                            <li><a href="/orderComplete">Order Completed</a></li>
+                            <li><a href="/orderCancel">Order Cancelled</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/categories"><i class="fa fa-shopping-bag"></i> <span
+                                class="nav-label">Categories</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/offers"><i class="fa fa-percent"></i> <span class="nav-label">Offers</span></a>
+                    </li>
+                    <li>
+                        <a href="/bannerList"><i class="fa fa-list"></i> <span class=" nav-label">All
+                                Banner</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-life-ring"></i> <span class="nav-labellabellabel">Notification
+                            </span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/singleNotification"> Single Notification</a></li>
+                            <li><a href="/bulkNotification">Bulk Notification</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/complaints"><i class="fa fa-comment"></i> <span
+                                class="nav-label">Complaints/Reports</span></a>
+
+                    </li>
+                    <li   >
+                        <a href="/review"><i class="fa fa-life-ring"></i> <span class=" nav-label">All
+                                Review</span></a>
+                    </li>
+                    <li>
+                        <a href="/FAQs"><i class="fa fa-info-circle"></i> <span class="nav-label">
+                                FAQs</span></a>
+
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-cogs"></i> <span
+                                class="nav-label">Settings</span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/app_version">App Version</a></li>
+                            <li><a href="/settings">Change Password</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to Eppy Admin  </span>
+                        </li>
+                        <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="wrapper wrapper-content">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-title1"   >
+                          
+                                <h5> Total Users</h5>
+                            
+                                
+                            </div>
+                            <div class="ibox-content1">
+                                <h1 class="no-margins" id="user"></h1>
+                                <!-- <small> Users</small> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">          
+                        <div class="ibox ">
+                            <div class="ibox-title1">
+                                <h5> Total Merchants</h5>
+                            </div>
+                            <div class="ibox-content1">
+                                <h1 class="no-margins" id="vendor"></h1>
+                                <!-- <small> vendors</small> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-title1">
+                                <h5> Total Orders</h5>
+                            </div>
+                            <div class="ibox-content1">
+                                <h1 class="no-margins" id="order"></h1>
+                                <!-- <small> Orders</small> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-title1">
+                                <h5> Total Active Merchants</h5>
+                            </div>
+                            <div class="ibox-content1">
+                                <h1 class="no-margins" id="vendors"></h1>
+                                <!-- <small> Active Vendors</small> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+                            <div class="ibox-title">
+                                <h5>Orders</h5>
+                                <div class="ibox-tools">
+                                    <div class="btn-group">
+                                        <!-- <button type="button" class="btn btn-xs btn-white " id="type1" value="Weekly"
+                                            onclick="choose1()">Weekly</button>
+                                        <button type="button" class="btn btn-xs btn-white" id="type2" value="Monthly"
+                                            onclick="choose2()">Monthly</button> -->
+                                        <button type="button" class="btn btn-xs btn-white" id="type3" value="Yearly"
+                                            onclick="choose3()">Annual</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <div>
+                                            <canvas id="barChart" height="100"></canvas>
+                                        </div>
+                                        <!-- <div>
+                                            <canvas id="barChart1" height="100"></canvas>
+                                        </div> -->
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <ul class="stat-list">
+                                            <li>
+                                                <h2 class="no-margins" id="completed"></h2>
+                                                <small>Total  Orders in this period</small>
+                                                <div class="progress progress-mini">
+                                                    <div style="width: 48%;" class="progress-bar"></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <h2 class="no-margins " id="pending"></h2>
+                                                <small>Total Completed Orders in this period</small>
+                                                <div class="progress progress-mini">
+                                                    <div style="width: 60%;" class="progress-bar2"></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <h2 class="no-margins " id="cancel"></h2>
+                                                <small>Total Cancelled Orders in this period</small>
+                                                <div class="progress progress-mini">
+                                                    <div style="width: 22%;" class="progress-bar3"></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ibox ">
+                            <div class="ibox-title">
+                                <h5>New Order Bookings</h5>
+                            </div>
+                            <div class="ibox-content table-responsive">
+                                <table class="table table-hover no-margins">
+                                    <thead class="bg-primary p-xs b-r-sm">
+                                        <tr>
+                                            <th>S.No.</th>
+                                            <th>Order ID</th>
+                                            <th>Customer</th>
+                                         
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='table'>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="footer">
+                <div>
+                    <strong>Copyright</strong> Eppy &copy; 2020-2021  
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Flot -->
+    <script src="js/plugins/flot/jquery.flot.js"></script>
+    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="js/plugins/flot/jquery.flot.symbol.js"></script>
+    <script src="js/plugins/flot/jquery.flot.time.js"></script>
+
+    <!-- Peity -->
+    <script src="js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="js/demo/peity-demo.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- Jvectormap -->
+    <script src="js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- ChartJS-->
+    <script src="js/plugins/chartJs/Chart.min.js"></script>
+    <script type="text/javascript">
+        var token = localStorage.getItem("token");
+        var host = window.location.protocol + "//" + window.location.host;
+        if (!token) {
+            // localStorage.clear();
+            // window.location.replace('/');
+        }
+        function auth(code) {
+            if (code == 403) {
+                // localStorage.clear();
+                // window.location.replace('/login');
+            }
+        }
+
+        function logout() {
+           
+            $.ajax({
+                url: host + '/api/v1/admin/logout',
+                type: 'Get',
+                // data: formData,
+                beforeSend: function (xhr) { xhr.setRequestHeader('x-auth', token); },
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    auth(data.code)
+                    if (data.code == 200) {
+                        // localStorage.clear();
+                        // window.location.replace('/login');
+                    } else {
+                        alert(data.message)
+                    }
+                }
+            })
+        }
+
+
+         function choose3(){
+             
+            let type = document.getElementById('type3').value;
+        $.ajax({           
+            url: host + '/api/v1/admin/adminGraphurl',
+            type: 'Post',
+            beforeSend: function (xhr) { xhr.setRequestHeader('x-auth', token); },
+            contentType: false,
+            processData: false,
+            success: function (data) {
+              //  auth(data.code)
+                if (data.code == 200) {
+                
+                  document.getElementById('completed').innerHTML = data.result5;
+                  document.getElementById('cancel').innerHTML = data.result6;
+                  document.getElementById('pending').innerHTML =data.result7;
+                    var barData = {
+                        labels: (data.result4),
+                        //[ "January", "February", "March", "April", "May", "June", "July", 'August', 'September', 'October', 'November', 'December'],//data.result4
+                        datasets: [
+                            {
+                                label: "Total Orders",
+                                backgroundColor: 'rgb(46, 204, 113)',
+                                pointBorderColor: "#fff",
+                                data: data.result3
+                            },
+                            {
+                                label: "Total Completed Orders",
+                                backgroundColor: 'rgba(26,179,148,0.5)',
+                                borderColor: "rgba(26,179,148,0.7)",
+                                pointBackgroundColor: "rgba(26,179,148,1)",
+                                pointBorderColor: "#fff",
+                                data: data.result1//data.result2
+                            },
+                            {
+                                label: "Total Cancelled Orders",
+                                backgroundColor: 'rgb(255, 0, 0)',
+                                pointBorderColor: "#ff0000",
+                                data: data.result2//data.result3
+                            }
+                        ]
+                    };
+                    var barOptions = {
+                        responsive: true
+                    };
+                    var ctx2 = document.getElementById("barChart").getContext("2d");
+                    new Chart(ctx2, { type: 'bar', data: barData, options: barOptions });
+                }
+            }
+        })
+    }
+
+    $.ajax({
+        
+            url: host + '/api/v1/admin/dashboardCount',
+            
+            type: 'Get',
+            // data: formData,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('x-auth', token);
+            },
+            contentType: false,
+            processData: false,
+            success: function(data, status) {
+               // auth(data.code)
+                
+                if (data.code == 200) {
+                    document.getElementById('user').innerHTML = data.Total;
+                    document.getElementById('vendor').innerHTML = data.vendor;
+                    document.getElementById('order').innerHTML = data.order;
+                    document.getElementById('vendors').innerHTML = data.vendors
+                }
+            }
+        });
+
+        $.ajax({
+            
+            url: host + '/api/v1/admin/dashboardorderDetails',
+            type: 'Post',
+            // data: formData,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('x-auth', token);
+            },
+            contentType: false,
+            processData: false,
+            success: function(data, status) {
+               // auth(data.code)
+                
+                if (data.code == 200) {
+                  
+                    function formatDate(date) {
+                        var d = new Date(date),
+                            month = '' + (d.getMonth() + 1),
+                            day = '' + d.getDate(),
+                            year = d.getFullYear();
+                        const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+                            "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+                        ];
+                        if (month.length < 2)
+                            month = '0' + month;
+                        if (day.length < 2)
+                            day = '0' + day;
+                        var y = monthNames[month - 1]
+                        return [day, monthNames[month - 1], year].join('-');
+                    }
+                    if (data.result && data.result.length) {
+                        for (var i = 0; i < data.result.length; i++) {
+                            var index = i + 1;
+                            // console.log(data.bookingsdetail[i].userId.name,"name")
+                            if (data.result[i].userId == null) {
+                                var nme = 'N/A'
+                            } else {
+                                var nme = data.result[i].userId.fullName
+                            }if(data.result[i].status=="accepted"){
+                                var status = "ACCEPTED"
+                            }
+                            if(data.result[i].status=="cancelledByUser"  ){
+                                var status = "CANCELLED By User"
+                            }if(data.result[i].status=="prepared"){
+                                var status = "PREPARED"
+                            }if(data.result[i].status=="completed"){
+                                var status = "COMPLETED"
+                            }
+                            if(data.result[i].status=="cancelledByVendor"){
+                                var status = "CANCELLED By Vendor"
+                            }
+                            if(data.result[i].status=="cancelledByAdmin"){
+                                var status = "CANCELLED By Admin"
+                            }
+                           
+                           
+                            document.getElementById('table').innerHTML += '<tr >' +
+                                '<td >' + index +  '<td>' + data.result[i].orderId +'<td >' + nme +
+                                '<td ><span class="label label-info">' + status + '</span>' +
+                                '<td>' + formatDate(data.result[i].order_Date) +  '</tr>'
+                                    
+                        }
+                    }
+                   
+                }
+            }
+        });
+
+    function choose2(){
+            let type = document.getElementById('type2').value;
+            var obj = {'type':type}
+        $.ajax({           
+            url: host + '/api/v1/user/adminGraph',
+            type: 'Post',
+            contentType: 'application/json',
+
+            data: JSON.stringify(obj),
+
+            beforeSend: function (xhr) { xhr.setRequestHeader('x-auth', token); },
+    
+            success: function (data) {
+                auth(data.code)
+                if (data.code == 200) {
+                    var ctx7 = document.getElementById("barChart").innerHTML =null
+
+                  if(data.result6.length !=0){
+                   var  totlPrice = data.result6[0].sum
+                 }else{
+                     var totlPrice = 0
+                 }
+                  document.getElementById('completed').innerHTML = data.result5;
+            document.getElementById('cancel').innerHTML = data.result7;
+            document.getElementById('pending').innerHTML ='$' + totlPrice;
+                    var barData = {
+                        labels: data.result4,
+                        //["January", "February", "March", "April", "May", "June", "July", 'August', 'September', 'October', 'November', 'December'],//d3wdata.result4,
+                        datasets: [
+                            {
+                                label: "Ads",
+                                backgroundColor: 'rgb(46, 204, 113)',
+                                pointBorderColor: "#fff",
+                                data: data.result3
+                            },
+                            {
+                                label: "30 sec Type Video",
+                                backgroundColor: 'rgba(26,179,148,0.5)',
+                                borderColor: "rgba(26,179,148,0.7)",
+                                pointBackgroundColor: "rgba(26,179,148,1)",
+                                pointBorderColor: "#fff",
+                                data: data.result1//data.small_video
+                            },
+                            {
+                                label: "60 sec Type Video",
+                                backgroundColor: 'rgb(0, 0, 255)',
+                                pointBorderColor: "#fff",
+                                data: data.result2//data.large_video
+                            }
+                        ]
+                    };
+                    var barOptions = {
+                        responsive: true
+                    };
+                    var ctx2 = document.getElementById("barChart").getContext("2d");
+
+                    new Chart(ctx2, { type: 'bar', data: barData, options: barOptions });
+                }
+            }
+        })
+    }
+
+    function choose1(){
+            let type = document.getElementById('type1').value;
+            var obj = {'type':type}
+
+        $.ajax({           
+            url: host + '/api/v1/user/adminGraph',
+            type: 'Post',
+            beforeSend: function (xhr) { xhr.setRequestHeader('x-auth', token); },
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            // contentType: false,
+            // processData: false,
+            success: function (data) {
+                auth(data.code)
+                if (data.code == 200) {
+                 if(data.result6.length !=0){
+                   var  totlPrice = data.result6[0].sum
+                 }else{
+                     var totlPrice = 0
+                 }
+                  document.getElementById('completed').innerHTML = data.result5;
+            document.getElementById('cancel').innerHTML = data.result7;
+            document.getElementById('pending').innerHTML ='$' + totlPrice;
+                    var barData = {
+                        labels: data.result11,//["January", "February", "March", "April", "May", "June", "July", 'August', 'September', 'October', 'November', 'December'],
+                        datasets: [
+                            {
+                                label: "Ads",
+                                backgroundColor: 'rgb(46, 204, 113)',
+                                pointBorderColor: "#fff",
+                                data: data.result8
+                            },
+                            {
+                                label: "30 sec Type Video",
+                                backgroundColor: 'rgba(26,179,148,0.5)',
+                                borderColor: "rgba(26,179,148,0.7)",
+                                pointBackgroundColor: "rgba(26,179,148,1)",
+                                pointBorderColor: "#fff",
+                                data: data.result9//data.small_video
+                            },
+                            {
+                                label: "60 sec Type Video",
+                                backgroundColor: 'rgb(0, 0, 255)',
+                                pointBorderColor: "#fff",
+                                data: data.result10//data.large_video
+                            }
+                        ]
+                    };
+                    var barOptions = {
+                        responsive: true
+                    };
+                    var ctx2 = document.getElementById("barChart").getContext("2d");
+                    new Chart(ctx2, { type: 'bar', data: barData, options: barOptions });
+                }
+            }
+        })
+    }
+
+
+
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,756 @@
+/* ---------------fonts---------- */
+
+@font-face {
+  font-family: "TestSöhneBreit-Dreiviertelfett";
+  src: url("../fonts/TestSöhne-Dreiviertelfett.otf");
+}
+
+@font-face {
+  font-family: "TestSöhneBreit-Kräftig";
+  src: url("../fonts/TestSöhneBreit-Kräftig.otf");
+}
+
+@font-face {
+  font-family: "TestSöhneBreit-Halbfett";
+  src: url("../fonts/TestSöhneBreit-Halbfett.otf");
+}
+
+@font-face {
+  font-family: "TestSöhneBreit-Buch";
+  src: url("../fonts/TestSöhneBreit-Buch.otf");
+}
+
+@font-face {
+  font-family: "Poppins-Medium";
+  src: url("../fonts/Poppins-Medium.ttf");
+}
+
+/* --------------------style------------- */
+html,
+body {
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+:focus {
+  outline: -webkit-focus-ring-color auto 0px;
+}
+
+body {
+  margin: 0;
+  background: transparent linear-gradient(180deg, #17161B 0%, #2C2B31 100%) 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+
+/* -------topSection----------- */
+.topSection {
+  position: relative;
+}
+
+.topSection::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  margin: 0 auto 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../../landing_page/images/first section.svg");
+  position: relative;
+  display: block;
+  position: absolute;
+  top: -6px;
+  right: 0;
+}
+
+.topSection .imgSec {
+  width: 569px;
+  height: 853px;
+  overflow: hidden;
+}
+
+.topSection .imgSec img {
+  width: 100%;
+  height: 100%;
+
+}
+
+.topSection .contentSec {
+  position: absolute;
+  top: 26%;
+  left: 0px;
+  margin: auto;
+  text-align: center;
+  width: 390px;
+}
+
+.topSection .contentSec .logo {
+  width: 118px;
+  height: 118px;
+  overflow: hidden;
+  margin: 10px auto 30px;
+}
+
+.topSection .contentSec .logo img {
+  width: 100%;
+  height: 100%;
+
+}
+
+.topSection .contentSec h3 {
+  font: 500 51px/37px TestSöhneBreit-Dreiviertelfett;
+  letter-spacing: 0.61px;
+  color: #FFFAEA;
+  opacity: 1;
+}
+
+.topSection .contentSec h5 {
+  font: 400 18px/42px TestSöhneBreit-Buch;
+  letter-spacing: 0.22px;
+  color: #FFFAEA;
+  opacity: 0.72;
+  margin-bottom: 55px;
+}
+
+.topSection .contentSec button {
+  background: #14B976 0% 0% no-repeat padding-box;
+  border-radius: 10px;
+  opacity: 1;
+  width: 100%;
+  height: 69px;
+  border: 0px;
+  font: 500 28px/39px TestSöhneBreit-Dreiviertelfett;
+  color: #fff;
+}
+
+/* --------------whyUs---------- */
+.whyUs {
+  position: relative;
+  padding: 37px 0;
+}
+
+.whyUs h2 {
+  font: 500 51px/37px TestSöhneBreit-Dreiviertelfett;
+  letter-spacing: 0.61px;
+  color: #FFFAEA;
+  opacity: 1;
+  text-align: center;
+  border-bottom: 15px solid #14B976;
+  width: fit-content;
+  margin: 0px auto 82px;
+  padding-bottom: 23px;
+}
+.whyUs::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  margin: 0 auto 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../landing_page/images/secondsectionbg.svg");
+  position: relative;
+  display: block;
+  position: absolute;
+  top: -6px;
+  right: 0;
+}
+.whyUs::after {
+  content: "";
+  width: 56%;
+  height: 66%;
+  margin: 0 auto 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("../../landing_page/images/linesbackground.svg");
+  display: block;
+  position: absolute;
+  top: 230px;
+  right: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.whyUs .contantSec h4 {
+  text-align: left;
+  font: 500 43px/70px TestSöhneBreit-Dreiviertelfett;
+  letter-spacing: 0.61px;
+  color: #FFFAEA;
+  opacity: 1;
+}
+
+.whyUs .contantSec p {
+  text-align: left;
+  font: 400 23px/35px TestSöhneBreit-Buch;
+  letter-spacing: 0.28px;
+  color: #FFFAEA;
+  opacity: 0.72;
+}
+
+.whyUs .contantSec.second {
+  margin-top: 80px;
+}
+
+.whyUs .contantSec.third {
+  margin-top: 132px;
+}
+
+/* -------------menuSec---------- */
+.menuSec {
+  position: relative;
+  padding: 90px 0;
+  height: 700px;
+}
+
+.menuSec::after {
+  content: "";
+width: 80%;
+height: 100%;
+margin: 0 auto 0;
+background-repeat: no-repeat;
+background-size: contain;
+background-image: url("../../landing_page/images/menubg.svg");
+display: block;
+position: absolute;
+top: 32px;
+right: 0;
+left: 0;
+z-index: -1;
+  }
+.menuSec h2 {
+  font: 500 51px/37px TestSöhneBreit-Dreiviertelfett;
+  letter-spacing: 0.61px;
+  color: #FFFAEA;
+  opacity: 1;
+  text-align: center;
+  border-bottom: 15px solid #14B976;
+  width: fit-content;
+  margin: 0px auto 82px;
+  padding-bottom: 23px;
+}
+
+.menuSec h3 {
+  text-align: left;
+  font: 500 35px/31px TestSöhneBreit-Dreiviertelfett;
+  letter-spacing: 0.42px;
+  color: #FFFFFF;
+}
+
+.menuSec h6 {
+  font: 400 23px/18px TestSöhneBreit-Buch;
+  letter-spacing: 0.28px;
+  color: #FFFAEA;
+}
+
+.dirnkSec {
+  background: #DD2928 0% 0% no-repeat padding-box;
+  border-radius: 18px;
+  display: block;
+  width: 183px;
+  height: 366px;
+  padding: 24px 22px;
+  position: relative;
+}
+.dirnkSec .drinkImg{
+  position: absolute;
+bottom: -31px;
+}
+
+.desertSec {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border-radius: 18px;
+  display: block;
+  width: 317px;
+  height: 167px;
+  margin-bottom: 32px;
+  position: relative;
+  padding-left: 110px;
+padding-top: 50px;
+}
+.desertSec .desertImg{
+  position: absolute;
+  top: -32px;
+  left: -89px;
+}
+.desertSec h3,.desertSec h6,.saladSec h3, .saladSec h6{
+  color: #DD2928;
+}
+.saladSec {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border-radius: 18px;
+  display: block;
+  width: 317px;
+  height: 167px;
+  position: relative;
+  padding-left: 110px;
+padding-top: 50px;
+}
+.saladSec .saladImg{
+  position: absolute;
+  top: -9px;
+  left: -89px;
+}
+
+.myPizza {
+  background: #DD2928 0% 0% no-repeat padding-box;
+  border-radius: 18px;
+  display: block;
+  width: 357px;
+  height: 366px;
+  padding: 24px 29px;
+  position: relative;
+}
+.myPizza .pizzaImg{
+  position: absolute;
+  bottom: -141px;
+  right: -75px;
+}
+/* ----------mobile--------- */
+.bannerSec{
+  padding: 50px 0;
+}
+.bannerSec .bannerImg{
+width: 100%;
+}
+.bannerSec .bannerImg img{
+  width: 100%;
+  }
+/* -------------menuSec---------- */
+.mobileSec {
+  position: relative;
+  padding: 90px 0;
+  height: 820px;
+}
+
+.mobileSec::after {
+  content: "";
+  width: 1366px;
+  height: 100%;
+  margin: 0 auto 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../landing_page/images/mobilebackground.svg");
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  left: 0;
+}
+
+.mobileSec .mobileImg {
+  width: 316px;
+  height: 664px;
+  margin: 0 auto;
+}
+
+.mobileSec .mobileImg img {
+  width: 100%;
+  height: 100%;
+}
+
+.mobileSec .mobileContent .logoImg {
+  width: 74px;
+  height: 75px;
+  overflow: hidden;
+  margin: 30px 0;
+}
+
+.mobileSec .mobileContent {
+  padding-top: 90px;
+}
+
+.mobileSec .mobileContent .logoImg img {
+  width: 100%;
+  height: 100%;
+}
+
+.mobileSec .mobileContent h3 {
+  text-align: left;
+  font: 500 32px/45px TestSöhneBreit-Dreiviertelfett;
+  letter-spacing: 0.38px;
+  color: #FFFAEA;
+  margin-bottom: 20px;
+}
+
+.mobileSec .mobileContent p {
+  font: 400 18px/30px TestSöhneBreit-Buch;
+  letter-spacing: 0.22px;
+  color: #FFFAEA;
+  opacity: 0.72;
+  margin-bottom: 70px;
+  width: 83%;
+}
+
+.mobileSec .mobileContent .downloadSec h4 {
+  text-align: left;
+  font: 500 32px/28px TestSöhneBreit-Dreiviertelfett;
+  letter-spacing: 0.38px;
+  color: #FFFAEA;
+  opacity: 1;
+}
+
+.mobileSec .mobileContent .downloadSec ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.mobileSec .mobileContent .downloadSec ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.mobileSec .mobileContent .downloadSec ul li:first-child {
+  margin: 0 10px 0 0;
+}
+
+.mobileSec .mobileContent .downloadSec ul li:last-child {
+  margin: 0 0px 0 10px;
+}
+
+/* -----------------footer----------------- */
+.footer {
+  padding: 100px 0;
+  position: relative;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../landing_page/images/footerbackground.svg");
+  display: block;
+  margin-top: 150px;
+}
+
+/* .footer::after {
+ content: "";
+  width: 1366px;
+  height: 100%;
+  margin: 0 auto 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../images/footerbackground.svg");
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  left: 0;
+} */
+ 
+.footer .logoImg {
+  width: 118px;
+  height: 118px;
+  overflow: hidden;
+  margin: 30px auto;
+}
+
+.footer .logoImg img {
+  width: 100%;
+  height: 100%;
+}
+
+.footer h3 {
+  text-align: center;
+  font: 500 51px/45px TestSöhneBreit-Dreiviertelfett;
+  letter-spacing: 0.38px;
+  color: #FFFAEA;
+  margin-bottom: 20px;
+}
+
+.footer p {
+  font: 400 18px/30px TestSöhneBreit-Buch;
+  letter-spacing: 0.22px;
+  color: #FFFAEA;
+  opacity: 0.72;
+  margin-bottom: 40px;
+}
+
+.footer .downloadSec h4 {
+  text-align: center;
+  font: 500 20px/28px TestSöhneBreit-Dreiviertelfett;
+  letter-spacing: 0.38px;
+  color: #FFFAEA;
+  opacity: 1;
+}
+
+.footer .downloadSec ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.footer .downloadSec ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.footer .downloadSec ul li:first-child {
+  margin: 0 10px 0 0;
+}
+
+.footer .downloadSec ul li:last-child {
+  margin: 0 0px 0 10px;
+}
+
+.copyRight {
+  padding: 20px 0;
+  text-align: center;
+  font: 500 14px/21px Poppins-Medium;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+@media(max-width:1280px) and (min-width:992px){
+  .topSection .imgSec {
+    width: 467px;
+    height: 778px;
+    overflow: hidden;
+  }
+  .whyUs::after {
+    content: "";
+    width: 80%;
+  }
+  .myPizza {
+    width: 289px;
+    height: 366px;
+    padding: 24px 29px;
+    position: relative;
+  }
+  .myPizza .pizzaImg {
+    position: absolute;
+    bottom: -91px;
+    right: -45px;
+    width: 96%;
+  }
+  .myPizza .pizzaImg  img{
+    width: 100%;
+  }
+  .desertSec,.saladSec{
+    width: 280px;
+  }
+}
+
+@media(max-width:991px) and (min-width:320px){
+  .topSection .imgSec {
+    width: 318px;
+    height: 584px;
+    overflow: hidden;
+  }
+  .topSection .contentSec {
+    position: absolute;
+    top: 14%;
+    left: -30px;
+    margin: auto;
+    text-align: center;
+    width: 345px;
+  }
+  .topSection .contentSec h3 {
+    font: 500 31px/27px TestSöhneBreit-Dreiviertelfett;
+    letter-spacing: 0.61px;
+    color: #FFFAEA;
+    opacity: 1;
+  }
+  .topSection .contentSec h5 {
+    font: 400 16px/42px TestSöhneBreit-Buch;
+    letter-spacing: 0.22px;
+    color: #FFFAEA;
+    opacity: 0.72;
+    margin-bottom: 26px;
+  }
+  .topSection .contentSec button {
+    background: #14B976 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    opacity: 1;
+    width: 100%;
+    height: 69px;
+    border: 0px;
+    font: 500 20px/39px TestSöhneBreit-Dreiviertelfett;
+    color: #fff;
+  }
+  .whyUs h2 ,.menuSec h2{
+    font: 500 37px/37px TestSöhneBreit-Dreiviertelfett;
+    letter-spacing: 0.61px;
+    color: #FFFAEA;
+    opacity: 1;
+    text-align: center;
+    border-bottom: 10px solid #14B976;
+    width: fit-content;
+    margin: 0px auto 82px;
+    padding-bottom: 12px;
+  }
+  .whyUs .contantSec h4 {
+    font: 500 27px/36px TestSöhneBreit-Dreiviertelfett;
+  }
+  .whyUs .contantSec p {
+    text-align: left;
+    font: 400 17px/28px TestSöhneBreit-Buch;
+  }
+  .whyUs::after {
+    content: "";
+    width: 80%;
+  }
+  .myPizza {
+    width: 289px;
+    height: 366px;
+    padding: 24px 29px;
+    position: relative;
+    margin: 10px auto 0px;
+  }
+  .myPizza .pizzaImg {
+    position: absolute;
+    bottom: -91px;
+    right: -45px;
+    width: 96%;
+  }
+  .myPizza .pizzaImg  img{
+    width: 100%;
+  }
+  .desertSec,.saladSec{
+    width: 280px;
+    margin: 10px auto 65px;
+
+  }
+  .mobileSec .mobileImg {
+    width: 330px;
+    height: 615px;
+    margin: 0 auto;
+  }
+  .menuSec {
+    position: relative;
+    padding: 90px 0;
+    height: fit-content;
+  }
+  .dirnkSec {
+ 
+    margin: 10px auto 65px;
+  }
+  .mobileSec .mobileContent h3 {
+    text-align: left;
+    font: 500 28px/45px TestSöhneBreit-Dreiviertelfett;
+    letter-spacing: 0.38px;
+    color: #FFFAEA;
+    margin-bottom: 1px;
+  }
+  .mobileSec .mobileContent p {
+    font: 400 17px/24px TestSöhneBreit-Buch;
+  }
+  .mobileSec .mobileContent .downloadSec h4 {
+    text-align: left;
+    font: 500 25px/28px TestSöhneBreit-Dreiviertelfett;
+  }
+  .mobileSec .mobileContent .downloadSec ul li {
+    display: inline-block;
+    margin: 0 10px;
+    width: 45%;
+  }
+  .mobileSec .mobileContent .downloadSec ul li a img{
+    width: 100%;
+  }
+  .footer {
+    padding: 50px 0;
+    margin-top: 50px;
+  }
+  .footer h3 {
+    text-align: center;
+    font: 500 35px/45px TestSöhneBreit-Dreiviertelfett;
+    letter-spacing: 0.38px;
+    color: #FFFAEA;
+    margin-bottom: 0px;
+  }
+}
+
+@media(max-width:767px) and (min-width:320px){
+
+  .topSection .imgSec {
+    display: none;
+  }
+  .topSection .contentSec {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    width: fit-content;
+    padding: 37px 15px;
+  }
+  .whyUs .contantSec h4 , .whyUs .contantSec p
+  {
+    text-align: center;
+  }
+  .whyUs .imgSec{
+    width: 100%;
+    height: 100%;
+  }
+  .whyUs .imgSec img{
+    width: 100%;
+    height: 100%; 
+  }
+  .whyUs .contantSec.third {
+    margin-top: 42px;
+  }
+  .saladSec .saladImg {
+    position: absolute;
+    top: 0px;
+    left: -52px;
+    width: 154px;
+    height: 154px;
+  }
+  .saladSec .saladImg img,.desertSec .desertImg img {
+    width: 100%;
+  }
+  .desertSec .desertImg {
+    width: 154px;
+    top: -17px;
+    left: -56px;
+    height: 154px;
+  }
+  .desertSec, .saladSec {
+    width: 230px;
+    margin: 10px auto 65px;
+    height: 154px;
+  }
+  .menuSec h3 {
+    text-align: left;
+    font: 500 25px/31px TestSöhneBreit-Dreiviertelfett;
+  }
+  .menuSec h6 {
+    font: 400 15px/18px TestSöhneBreit-Buch;
+  }
+  .myPizza {
+    width: 230px;
+    height: 290px;
+  }
+  .mobileSec .mobileImg {
+    width: 100%;
+  }
+  .mobileSec {
+    position: relative;
+    padding: 90px 0;
+    height: fit-content;
+  }
+  .footer ul li {
+    display: inline-block;
+    margin: 0 10px;
+    /* width: 45%; */
+  }
+  .footer ul li a img{
+    width: 160px;
+  }
+  .mobileSec .mobileContent {
+    padding-top: 14px;
+    text-align: center;
+  }
+  .mobileSec .mobileContent .logoImg {
+    width: 74px;
+    height: 75px;
+    overflow: hidden;
+    margin: 30px auto;
+  }
+  .mobileSec .mobileContent p{
+    width: 100%;
+    text-align: center;
+  }
+  .mobileSec .mobileContent h3 ,.mobileSec .mobileContent .downloadSec h4{
+    text-align: center;
+  }
+  .whyUs::after{
+    display: none;
+  }
+}

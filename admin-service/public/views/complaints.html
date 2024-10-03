@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Eppy</title>
+    <link rel="icon" href="../img/pizzaNpintLogo.png" type="image">
+
+    <link rel="stylesheet" href="paginate/bs-pagination.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="paginate/pagination.min.js"></script>
+
+    <!--<link rel="stylesheet" href="dist/pagination.min.css">-->
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="./css/animate.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="paginate/pagination.min.css">
+
+
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script>
+        var jqOld = jQuery.noConflict();
+        jqOld(function () {
+            jqOld("#fromDate").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        })
+    </script>
+    <script>
+        var jqOld = jQuery.noConflict();
+        jqOld(function () {
+            jqOld("#toDate").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        })
+    </script>
+
+
+    <style type="text/css">
+        .container {
+            margin: 100px auto;
+        }
+
+        .box,
+        .show {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .show {
+            padding: 10px 0;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .table-dropdown .show {
+            margin: 0px !important;
+            text-align: left !important;
+            padding: 0px !important;
+        }
+
+        .table-dropdown .dropdown .dropdown-toggle {
+            padding: 0 !important;
+        }
+
+        .table-dropdown .dropdown .dropdown-toggle::after {
+            display: none;
+        }
+
+        input::placeholder {
+            padding-left: 8px !important;
+        }
+
+        .loader {
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            position: fixed;
+            display: block;
+            opacity: 0.9;
+            background-color: rgb(0, 0, 0, 20%);
+            z-index: 9999;
+            text-align: center;
+        }
+
+        .loader-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 60px;
+            height: 60px;
+            margin: -76px 0 0 -76px;
+            border: 8px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 8px solid #34db95;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @media only screen and (max-width: 992px) {
+            .lastline {
+                margin: 0px !important;
+                display: inline-block !important;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body onload="bookingDetails()">
+    <div class="loader" id='loader1'>
+        <div class="loader-content"></div>
+    </div>
+
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element" style="text-align: center;">
+                            <img alt="image" class="" style="width: 125px;" src="../img/pizzaNpintLogo.svg" />
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold"> Eppy</span>
+                            </a>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+
+                    </li>
+                    <li>
+
+                        <a href="/user"><i class="fa fa-users"></i> <span class="nav-label">User</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/vendor"><i class="fa fa-user"></i> <span class="nav-label">Merchant</span></a>
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-ticket"></i> <span class="nav-label">Orders</span></a>
+                        <ul class="nav nav-second-level">
+                            <!-- <li><a href="/orderPending">Order Pending</a></li> -->
+                            <li><a href="/orderProgress">Order Inprogress</a></li>
+                            <li><a href="/orderComplete">Order Completed</a></li>
+                            <li><a href="/orderCancel">Order Cancelled</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/categories"><i class="fa fa-shopping-bag"></i> <span
+                                class="nav-label">Categories</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/offers"><i class="fa fa-percent"></i> <span class="nav-label">Offers</span></a>
+                    </li>
+                    <li>
+                        <a href="/bannerList"><i class="fa fa-list"></i> <span class=" nav-label">All
+                                Banner</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-life-ring"></i> <span class="nav-labellabellabel">Notification
+                            </span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/singleNotification"> Single Notification</a></li>
+                            <li><a href="/bulkNotification">Bulk Notification</a></li>
+                        </ul>
+                    </li>
+                    <li class='active'>
+                        <a href="/complaints"><i class="fa fa-comment"></i> <span
+                                class="nav-label">Complaints/Reports</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/review"><i class="fa fa-life-ring"></i> <span class=" nav-label">All
+                                Review</span></a>
+                    </li>
+                    <li>
+                        <a href="/FAQs"><i class="fa fa-info-circle"></i> <span class="nav-label">
+                                FAQs</span></a>
+
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-cogs"></i> <span class="nav-label">Settings</span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/app_version">App Version</a></li>
+                            <li><a href="/settings">Change Password</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                                class="fa fa-bars"></i> </a>
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to Eppy Admin </span>
+                        </li>
+
+                        <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-12">
+                    <h2>Report Detail</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/dashboard">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <strong>All Details </strong>
+                        </li>
+                    </ol>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <a href="/">
+                                <div class="ibox ">
+                                    <div class="ibox-title">
+                                        <h5>Total Tickets</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <h1 class="no-margins" id="totalticket"></h1>
+                                        <small>Total Tickets</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-lg-3">
+                            <a href="/">
+                                <div class="ibox ">
+                                    <div class="ibox-title">
+                                        <h5>Ticket Pending</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <h1 class="no-margins" id="totalpending"></h1>
+                                        <small>Total Pending</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3">
+                            <a href="/">
+                                <div class="ibox ">
+                                    <div class="ibox-title">
+                                        <h5>Ticket Resolved</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <h1 class="no-margins" id="ticketresolve"></h1>
+                                        <small>Total Resolved</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group" id="data_1">
+                                            <label class="font-normal">From Date</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-calendar"></i></span><input type="text"
+                                                    class="form-control" id="fromDate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group" id="data_1">
+                                            <label class="font-normal">To Date</label>
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-calendar"></i></span><input type="text"
+                                                    class="form-control" id="toDate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group" id="data_1">
+                                            <label class="font-normal">Select Types</label>
+                                            <select class="form-control" id="reportId" name="reportId">
+                                                <option>None</option>
+                                                <option value=all>All</option>
+                                                <option value=resolved>Resolved</option>
+                                                <option value=pending>Pending</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="search">
+                                            <input type="text" placeholder="Report ID....." name="search" id="search"
+                                                style="height: 36px; border: 1px solid #e5e6e7; border-radius: 1px;">
+                                            <!-- <button type="submit"><i class="fa fa-search" onclick="bookingDetails()"></i></button> -->
+                                            <button class="btn " onclick="bookingDetails()"> Submit</button>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-2" style="margin-top: 28px; text-align: right;">
+                                        <button type="button" style="height: 36px;" class="btn btn-primary btn-success"
+                                            onclick="download()"> Export as
+                                            Excel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <div class="table-responsive">
+                                    <table class="table table-hover" style="margin-bottom: 8rem;">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Report ID</th>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Current <br>Status</th>
+
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table">
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                                <div class="alert alert-primary hide" id="noData" role="alert">
+                                    No data found
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box" id="page1">
+                    <ul id="example-1" class="pagination"></ul>
+                </div>
+
+            </div>
+            <div class="footer">
+                <div>
+                    Copyright Eppy &copy; 2021-2022
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Mainly scripts -->
+        <script src="../js/jquery-3.1.1.min.js"></script>
+        <script src="../js/popper.min.js"></script>
+        <script src="../js/bootstrap.js"></script>
+        <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+        <!-- Peity -->
+        <script src="../js/plugins/peity/jquery.peity.min.js"></script>
+
+        <!-- Custom and plugin javascript -->
+        <script src="../js/inspinia.js"></script>
+        <script src="../js/plugins/pace/pace.min.js"></script>
+
+        <!-- iCheck -->
+        <script src="../js/plugins/iCheck/icheck.min.js"></script>
+
+        <!-- Peity -->
+        <script src="../js/demo/peity-demo.js"></script>
+        <script type="text/javascript" src="../paginate/pagination.min.js"></script>
+        <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+
+        <script>
+            var token = localStorage.getItem("token");
+            var host = window.location.protocol + "//" + window.location.host;
+            if (!token) {
+                localStorage.removeItem("name");
+                localStorage.removeItem("token");
+                window.location.replace('/login');
+            }
+
+            function auth(code) {
+                if (code == 403) {
+                    localStorage.removeItem("name");
+                    localStorage.removeItem("token");
+                    window.location.replace('/login');
+                }
+            }
+
+            function logout() {
+
+                $.ajax({
+                    url: host + '/api/v1/admin/logout',
+                    type: 'Get',
+                    // data: formData,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('x-auth', token);
+                    },
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        auth(data.code)
+                        if (data.code == 200) {
+                            localStorage.removeItem("name");
+                            localStorage.removeItem("token");
+                            window.location.replace('/login');
+                        } else {
+                            alert(data.message)
+                        }
+                    }
+                })
+            }
+
+            function bookingDetails() {
+
+                var obj = {
+                    'pageNo': 1,
+                    'perPage': 10,
+                    'search': document.getElementById('search').value,
+                    'reportId': document.getElementById('reportId').value,
+                    'toDate': document.getElementById('toDate').value,
+                    'fromDate': document.getElementById('fromDate').value
+
+
+                }
+
+                $("#loader1").show("loader")
+                $.ajax({
+                    url: host + '/api/v1/admin/get_report_list',
+                    type: 'Post',
+                    contentType: 'application/json',
+                    data: JSON.stringify(obj),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('x-auth', token);
+                    },
+                    dataType: 'json',
+
+                    success: function (data, status) {
+                        auth(data.code)
+                        if (data.code == 200) {
+                            $("#loader1").hide("loader")
+                        }
+                        if (data.code == 200 && data.result.length != 0) {
+                            $("#table2").removeClass("hide")
+                            $("#noData").removeClass("show")
+                            $("#page1").removeClass("hide")
+                            // $("#loader1").hide("loader")
+                            var x = data.Total
+                            $('#example-1').pagination({
+                                total: x,
+                                current: 1,
+                                length: 10,
+                                prev: 'Previous',
+                                next: 'Next',
+                                click: function (options, $target) {
+                                    let obj = {
+                                        'pageNo': options.current,
+                                        'perPage': options.length,
+                                        'search': document.getElementById('search').value,
+                                        'toDate': document.getElementById('toDate').value,
+                                        'fromDate': document.getElementById('fromDate').value,
+                                        'reportId': document.getElementById('reportId').value,
+                                    }
+
+                                    $("#loader1").show("loader")
+                                    $.ajax({
+                                        url: host + '/api/v1/admin/get_report_list',
+                                        type: 'Post',
+                                        contentType: 'application/json',
+                                        data: JSON.stringify(obj),
+                                        beforeSend: function (xhr) {
+                                            xhr.setRequestHeader('x-auth', token);
+                                        },
+                                        dataType: 'json',
+                                        success: function (data, Status) {
+
+                                            $("#loader1").hide("loader")
+                                            auth(data.code)
+                                            if (data.code == 200 && data.result.length != 0) {
+                                                $("#table").html(' ');
+                                                for (var i = 0; i < data.result.length; i++) {
+
+                                                    if (data.result[i].isActive == true) {
+                                                        var x = 'Deactive'
+                                                        var y = 'Active'
+                                                    } else {
+                                                        var x = 'Active'
+                                                        var y = 'Deactive'
+                                                    }
+                                                    if (data.result[i].userId == null && data.result[i].vendorId == null) {
+                                                        var name = 'N/A'
+                                                    }
+                                                    if (data.result[i].userId != null) {
+                                                        var name = data.result[i].userId.fullName
+                                                    }
+                                                    if (data.result[i].vendorId != null) {
+                                                        var name = data.result[i].vendorId.fullName
+                                                    }
+                                                    if (data.result[i].status == "pending") {
+                                                        var status = "PENDING"
+                                                    } else {
+                                                        var status = "RESOLVED"
+                                                    }
+
+                                                    var index = i + 1 + (obj.perPage * (obj.pageNo - 1));
+
+                                                    document.getElementById('table').innerHTML += '<tr >' +
+                                                        '<td >' + index + '<td>' + data.result[i].issueId + '<td>' + name +
+                                                        '<td>' + data.result[i].description + '<td><span class="label label-primary">' + status +
+                                                        '<td><span class="label label-primary">' + y +
+                                                        '<td class="table-dropdown">' + '<div class="dropdown">' +
+
+                                                        '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                                        '<img src="' + "../img/moreicon1.png" + '" >  </button > ' +
+                                                        '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                                                        //'<a class="dropdown-item"  onclick ="Updatedata(' + '\'' + data.result[i]._id + '\'' + ')">Active</a>' +
+                                                        // '<a class="dropdown-item"   onclick = "Updatedata(' + '\'' + data.result[i]._id + '\'' + ')">Deactive</a>' +
+                                                        '<a class="dropdown-item"   onclick = "View(' + '\'' + data.result[i]._id + '\'' + ')">View</a>' +
+
+                                                        '<a class="dropdown-item"   onclick = "edit(' + '\'' + data.result[i]._id + '\'' + ')">Resolved</a>' +
+
+                                                        '</div></div>'
+                                                }
+                                            }
+
+                                        }
+
+                                    })
+                                    $target.next(".show").text('Current: ' + options.current);
+
+                                }
+                            })
+                            $("#table").html(' ');
+                            for (var i = 0; i < data.result.length; i++) {
+                                var arr = []
+
+                                var index = i + 1 + (obj.perPage * (obj.pageNo - 1));
+
+                                if (data.result[i].isActive == true) {
+                                    var x = 'Deactive'
+                                    var y = 'Active'
+                                } else {
+                                    var x = 'Active'
+                                    var y = 'Deactive'
+                                }
+                                if (data.result[i].userId == null && data.result[i].vendorId == null) {
+                                    var name = 'N/A'
+                                }
+                                if (data.result[i].userId != null) {
+                                    var name = data.result[i].userId.fullName
+                                }
+                                if (data.result[i].vendorId != null) {
+                                    var name = data.result[i].vendorId.fullName
+                                }
+                                if (data.result[i].status == "pending") {
+                                    var status = "PENDING"
+                                } else {
+                                    var status = "RESOLVED"
+                                }
+
+                                document.getElementById('table').innerHTML += '<tr >' +
+                                    '<td >' + index + '<td>' + data.result[i].issueId + '<td>' + name +
+                                    '<td>' + data.result[i].description + '<td><span class="label label-primary">' + status +
+                                    '<td><span class="label label-primary">' + y +
+                                    '<td class="table-dropdown">' +
+                                    '<div class="dropdown">' +
+                                    '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                    '<img src="' + "../img/moreicon1.png" + '" >  </button > ' +
+                                    '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                                    // '<a class="dropdown-item"  onclick ="Updatedata(' + '\'' + data.result[i]._id + '\'' + ')">Active</a>' +
+                                    // '<a class="dropdown-item"   onclick = "Updatedata(' + '\'' + data.result[i]._id + '\'' + ')">Deactive</a>' +
+                                    '<a class="dropdown-item"   onclick = "View(' + '\'' + data.result[i]._id + '\'' + ')">View</a>' +
+
+                                    '<a class="dropdown-item"   onclick = "edit(' + '\'' + data.result[i]._id + '\'' + ')">Resolved</a>' +
+
+                                    '</div></div>'
+                            }
+                        } else {
+                            $("#table").html(' ');
+                            $("#table2").addClass("hide");
+                            $("#noData").addClass("show");
+                            $("#page1").hide();
+
+                        }
+                    }
+
+                });
+            }
+            $.ajax({
+                url: host + '/api/v1/admin/reportCount',
+                type: 'Get',
+                // data: formData,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                contentType: false,
+                processData: false,
+                success: function (data, status) {
+                    auth(data.code)
+                    if (data.code == 200) {
+                        document.getElementById('totalticket').innerHTML = data.totl_count;
+                        document.getElementById('totalpending').innerHTML = data.total_Pending;
+                        document.getElementById('ticketresolve').innerHTML = data.totalResolve;
+
+                    }
+                }
+            });
+
+            function Updatedata(user_id) {
+
+                var num = (user_id)
+                $(document).on('click', '.dropdown-menu a', function () {
+                    var a = ($(this).text());
+                    if (a === 'Active') {
+                        var updte = 'Active'
+                    } else {
+                        var updte = 'Deactive'
+                    }
+                    let obj = {
+                        "user_id": num,
+                        "status": updte
+                    };
+                    swal({
+                        title: "Are you sure?",
+                        text: "Ready to Action!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, Take Action!",
+                        cancelButtonText: "No, leave pls!",
+                        closeOnConfirm: false,
+                        closeOnCancel: true
+                    },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url: host + '/api/v1//userupdateStatu',
+                                    type: 'Post',
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(obj),
+                                    // beforeSend: function(xhr) {
+                                    //     xhr.setRequestHeader('x-auth', token);
+                                    // },
+                                    dataType: 'json',
+                                    success: function (data, status) {
+                                        auth(data.code)
+                                        if (data.code == 200) {
+
+                                            alert(data.message)
+                                            window.location.reload()
+                                        } else {
+                                            alert(data.message)
+                                        }
+                                    }
+                                });
+                            } else {
+                                swal("Cancelled", "Your file is safe :");
+                            }
+                        });
+                })
+            }
+            function View(user_id) {
+                var id = user_id
+                window.location.href = host + "/reportDetails?id=" + user_id
+            }
+
+
+
+            function edit(user_id) {
+                var obj = {
+                    'user_id': user_id
+                }
+                $.ajax({
+                    url: host + '/api/v1/admin/reportresolve',
+                    type: 'Post',
+                    contentType: 'application/json',
+                    data: JSON.stringify(obj),
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('x-auth', token);
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data.message);
+                        window.location.replace('/complaints');
+                    }
+                });
+            }
+
+            function convertToCSV(objArray) {
+                var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+                var str = '';
+
+                for (var i = 0; i < array.length; i++) {
+                    var line = '';
+                    for (var index in array[i]) {
+                        if (line != '') line += ','
+
+                        line += array[i][index];
+                    }
+
+                    str += line + '\r\n';
+                }
+
+                return str;
+            }
+
+            function exportCSVFile(headers, items, fileTitle) {
+                if (headers) {
+                    items.unshift(headers);
+                }
+
+                // Convert Object to JSON
+                var jsonObject = JSON.stringify(items);
+
+                var csv = this.convertToCSV(jsonObject);
+
+                var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
+
+                var blob = new Blob([csv], {
+                    type: 'text/csv;charset=utf-8;'
+                });
+                if (navigator.msSaveBlob) { // IE 10+
+                    navigator.msSaveBlob(blob, exportedFilenmae);
+                } else {
+                    var link = document.createElement("a");
+                    if (link.download !== undefined) { // feature detection
+                        // Browsers that support HTML5 download attribute
+                        var url = URL.createObjectURL(blob);
+                        link.setAttribute("href", url);
+                        link.setAttribute("download", exportedFilenmae);
+                        link.style.visibility = 'hidden';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                }
+            }
+
+            function download() {
+
+                $("#loader1").show("loader")
+                //let type = document.getElementById('opts').value;
+                $.get(host + '/api/v1/admin/reportExcel', {
+                    'type': 'vendor'
+                }, function (data, status) {
+
+                    $("#loader1").hide("loader")
+                    if (data.code == 200) {
+                        var headers = {
+                            issueId: 'Report Id',
+                            role: "Report By",
+                            name: "Name",
+                            description: "Description",
+                            status: 'Report Status',
+                            image: 'Image',
+                            createdAt: 'Created Date',
+                            updatedAt: 'Updated Date'
+                        };
+
+                        itemsNotFormatted = data.result;
+
+                        var fileTitle = 'ComplaintsFile'; // or 'my-unique-title'
+
+                        exportCSVFile(headers, itemsNotFormatted, fileTitle); // call the exportCSVFile() function to process the JSON and trigger the download
+                    }
+                })
+            }
+        </script>
+
+
+
+</body>
+
+</html>

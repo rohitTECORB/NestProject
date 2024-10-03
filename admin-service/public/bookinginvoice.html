@@ -1,0 +1,278 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Times;
+            font-size: 10pt;
+        }
+        
+        p {
+            margin: 0pt;
+        }
+        
+        table.items {
+            /* border: 0.1mm solid #e7e7e7; */
+        }
+        
+        td {
+            vertical-align: top;
+        }
+        
+        .items td {
+            /* border-left: 0.1mm solid #e7e7e7;
+        border-right: 0.1mm solid #e7e7e7; */
+        }
+        
+        table thead td {
+            text-align: center;
+            /* border: 0.1mm solid #e7e7e7; */
+        }
+        
+        .items td.blanktotal {
+            background-color: #EEEEEE;
+            border: 0.1mm solid #e7e7e7;
+            background-color: #FFFFFF;
+            border: 0mm none #e7e7e7;
+            border-top: 0.1mm solid #e7e7e7;
+            border-right: 0.1mm solid #e7e7e7;
+        }
+        
+        .items td.totals {
+            text-align: right;
+            border: 0.1mm solid #e7e7e7;
+        }
+        
+        .items td.cost {
+            text-align: "."center;
+        }
+    </style>
+    <script>
+        var text;
+        for (var i = 0; i < this.booking; i++) {
+            text += '<tr>' +
+                '<td style="padding: 3px 7px;line-height: 20px;text-align: center;">' + this.booking[i].serviceId.tittle_en + '</td>' +
+                '<td style="padding: 3px 7px;line-height: 20px;text-align: center;">' + 1 + '</td>' +
+                '<td style="padding: 3px 7px;line-height: 20px;text-align: center;">' + this.booking[i].Price + '</td>' +
+                '<td style="padding: 3px 7px;line-height: 20px;text-align: right;">' + this.booking[i].Price + '</td>' +
+
+                '</tr>'
+        }
+    </script>
+</head>
+
+<body style="background: #ddd;">
+
+    <div style="width: 892.500000px; margin: auto;background: #fff; padding: 10px 30px 10px 50px;">
+        <table width="100%" style="font-family: sans-serif;" cellpadding="10">
+            <tbody>
+                <tr>x
+                    <td width="80%" style="text-align: right;padding: 21px 74px 0 7px;line-height: 72px;font-size: 36px;text-transform: uppercase;">
+                        <strong>iinsty</strong>
+                    </td>
+                    <td width="30%" style="padding: 46px;text-align: center;">
+                        <a href="#" target="_blank"><img src="https://nayee-landing.herokuapp.com/img/png/logo_svg.svg" width="204" height="80" alt="Logo" align="center" border="0"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="100%" style="text-align: center; font-size: 20px; font-weight: bold; padding: 0px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="10" style="font-size: 0px; line-height: 10px; height: 10px; padding: 0px;">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table width="100%" style="font-family: sans-serif;" cellpadding="10">
+            <tbody>
+                <tr>
+                    <td width="55%"><strong>{{salonemail}}</strong><br>{{salonadd}}<br></td>
+                    <td width="2%">&nbsp;</td>
+                    <td width="43%"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="100%" style="font-family: sans-serif;" cellpadding="10">
+            <tbody>
+                <tr>
+                    <td width="60%" style="
+    border-bottom: 1px solid;
+"></td>
+                    <td width="2%">&nbsp;</td>
+                    <td width="38%" style="text-align: left;border-bottom: 1px solid;"><strong>Invoice</strong><br></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <table width="100%" style="font-family: sans-serif;font-size: 14px;">
+            <tbody>
+                <tr>
+                    <td>
+                        <table width="62%" align="left" style="font-family: sans-serif; font-size: 14px;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 0px; line-height: 20px;">&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table width="35%" align="left" style="font-family: sans-serif;font-size: 12px;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 0px 0px 0 8px;line-height: 20px;" width="35%">Invoice no................... :</td>
+                                    <td style="padding: 0px 0px;line-height: 20px;" width="30%">{{invoiceNo}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0px 0px 0 8px;line-height: 20px;" width="35%">Invoice date............... :</td>
+                                    <td style="padding: 0px 0px;line-height: 20px;">{{invoiceDate}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0px 0px 0 8px;line-height: 20px;">Booking no..................... :</td>
+                                    <td style="padding: 0px 0px;line-height: 20px;">{{orderId}}</td>
+                                </tr>
+                                <!-- <tr>
+                                    <td style="padding: 0px 0px 0 8px;line-height: 20px;">Side .......................... :</td>
+                                    <td style="padding: 0px 0px;line-height: 20px;">1 af 1</td>
+                                </tr> -->
+
+                                <tr>
+                                    <td style="padding: 0px 0px 0 8px;line-height: 20px;">User name. .................. :</td>
+                                    <td style="padding: 0px 0px;line-height: 20px;">{{username}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <table class="items" width="100%" style="font-size: 14px;border-collapse: collapse;margin-top: 26px;" cellpadding="8">
+            <thead style="
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+">
+                <tr>
+                    <td width="45%" style="text-align: center;"><strong>
+                        Nr. Text</strong></td>
+                    <td width="25%" style="text-align: center;"><strong>Number of Units </strong></td>
+                    <td width="20%" style="text-align: center;"><strong>Stk. price</strong></td>
+                    <td width="10%" style="text-align: right;"><strong>Price</strong></td>
+                </tr>
+            </thead>
+            <tbody id='service'>
+                <tr>
+                    <td style="padding: 3px 7px;line-height: 20px;text-align: center;">{{booking}}</td>
+                    <td style="padding: 3px 7px;line-height: 20px;text-align: center;">1</td>
+                    <td style="padding: 3px 7px;line-height: 20px;text-align: center;">{{Price}}</td>
+                    <td style="padding: 3px 7px;line-height: 20px;text-align: right;">{{Price}}</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+        <br>
+        <table width="100%" style="font-family: sans-serif;font-size: 14px;border-top: 1px solid;">
+            <tbody>
+                <tr>
+                    <td>
+                        <table width="60%" align="left" style="font-family: sans-serif; font-size: 14px;">
+                            <tbody>
+                                <tr>
+                                    <!-- <td style="padding: 2px 5px;line-height: 20px;font-size: 12px;">(VAT-free amount: <strong>0,00</strong> - Amount subject to VAT: <strong>3.428,30</strong>)</td> -->
+                                </tr>
+                                <tr>
+                                    <td style="
+    padding: 12px 0px;
+    line-height: 20px;
+">Our reference: {{registrationNo}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table width="40%" align="right" style="font-family: sans-serif;font-size: 14px;border-bottom: 1px solid;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 2px 8px;line-height: 20px;text-align: right;">Subtotal :</td>
+                                    <td style="padding: 2px 8px;line-height: 20px;text-align: right;">{{payamount}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 8px;line-height: 20px;text-align: right;">Salon Discount :</td>
+                                    <td style="padding: 2px 8px;line-height: 20px;text-align: right;">{{vendordisount}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 8px;line-height: 20px;text-align: right;">Admin Discount :</td>
+                                    <td style="padding: 2px 8px;line-height: 20px;text-align: right;">{{admindiscount}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 8px;line-height: 20px;text-align: right;"><strong>Total kr :</strong></td>
+                                    <td style="padding: 2px 8px;line-height: 20px;text-align: right;"><strong>{{netPayamount}}</strong></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <br><br>
+        <table width="100%" style="font-family: sans-serif;font-size: 14px;border-bottom: 1px solid;">
+
+            <tbody>
+                <tr>
+                    <td>
+
+                        <table width="100%" align="left" style="font-family: sans-serif;font-size: 13px;text-align: left;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 0px 0px 8px;line-height: 20px;">
+                                        <!-- Betalingsbetingelser: Netto 14 dage - forfald <strong>09.03.2021</strong>
+                            <br>
+                         Beløbet indbetales til vor bank. Danske Bank - Regnr.: <strong>3409</strong> / Kontonr.: <strong>0011377122</strong>
+                            <br>
+                           Fakturanr. <strong>10632</strong> bedes anført ved bankoverførsel -->
+                                        <br><br>
+                                        <i>In the event of late payment, interest is expected in accordance with applicable law</i><br>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table width="100%" style="font-family: sans-serif; font-size: 14px;">
+
+            <tbody>
+                <tr>
+                    <td>
+
+                        <table width="100%" align="left" style="font-family: sans-serif;font-size: 11px;text-align: center;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 10px 0px;line-height: 20px;">
+                                        <strong>Diction ApS</strong> - Herstedøstervej 29, 1. 2620 Albertslund Denmark CVR-nr.38917641 - CVR-nr.: 35636455
+                                        <br> Tlf.: 22277016 - Mobil: 26857082 - Mail: finance@diction.dk - Web: www.diction.dk
+                                        <br>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+</body>
+
+</html>

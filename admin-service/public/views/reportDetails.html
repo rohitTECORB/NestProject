@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Eppy</title>
+    <link rel="stylesheet" href="paginate/bs-pagination.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="paginate/pagination.min.js"></script>
+
+    <!--<link rel="stylesheet" href="dist/pagination.min.css">-->
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="./css/animate.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="paginate/pagination.min.css">
+    <style type="text/css">
+        .container {
+            margin: 100px auto;
+        }
+        
+        .box,
+        .show {
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        .show {
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <img alt="image" style="width: 120px;" src="../img/pizzaNpintLogo.svg" />
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold" style="margin-left: 50px;"></span>
+                                <!-- <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> -->
+                            </a>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                        <li>
+                            <a href="/dashboard"><i class="fa fa-th-large"></i> <span
+                                class="nav-label">Dashboards</span></a>
+
+                        </li>
+                        <li >
+
+                            <a href="/user"><i class="fa fa-users"></i> <span class="nav-label">User</span></a>
+    
+                        </li>
+                        <li >
+                            <a href="/vendor"><i class="fa fa-user"></i> <span class="nav-label">Merchant</span></a>
+    
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-ticket"></i> <span class="nav-label">Orders</span></a>
+                            <ul class="nav nav-second-level">
+                                <!-- <li><a href="/orderPending">Order Pending</a></li> -->
+                                <li><a href="/orderProgress">Order Inprogress</a></li>
+                                <li><a href="/orderComplete">Order Completed</a></li>
+                                <li><a href="/orderCancel">Order Cancelled</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/categories"><i class="fa fa-shopping-bag"></i> <span
+                                    class="nav-label">Categories</span></a>
+    
+                        </li>
+                        <li>
+                            <a href="/offers"><i class="fa fa-percent"></i> <span class="nav-label">Offers</span></a>
+                        </li>
+                        <li>
+                            <a href="/bannerList"><i class="fa fa-list"></i> <span class=" nav-label">All
+                                    Banner</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-life-ring"></i> <span class="nav-labellabellabel">Notification
+                                </span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="/singleNotification"> Single Notification</a></li>
+                                <li><a href="/bulkNotification">Bulk Notification</a></li>
+                            </ul>
+                        </li>
+                        <li class='active'>
+                            <a href="/complaints"><i class="fa fa-comment"></i> <span
+                                    class="nav-label">Complaints/Reports</span></a>
+    
+                        </li>
+                        <li   >
+                            <a href="/review"><i class="fa fa-life-ring"></i> <span class=" nav-label">All
+                                    Review</span></a>
+                        </li>
+                        <li>
+                            <a href="/FAQs"><i class="fa fa-info-circle"></i> <span class="nav-label">
+                                    FAQs</span></a>
+    
+                        </li>
+    
+                        <li>
+                            <a href="#"><i class="fa fa-cogs"></i> <span
+                                    class="nav-label">Settings</span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="/app_version">App Version</a></li>
+                                <li><a href="/settings">Change Password</a></li>
+                            </ul>
+    
+                        </li>
+    
+                    </ul>
+    
+                </div>
+            </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to Eppy Admin </span>
+                        </li>
+
+                        <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-4">
+                    <h2>Report Detail</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/dashboard">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a href="/complaints">All Reports</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <strong>Report Detail</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row m-b-lg m-t-lg">
+                    <div class="col-md-6">
+                        <div>
+                            <h2 class="no-margins" id="ticektNo">
+                            </h2>
+                            <a onclick="booking()">
+                                <h4 id="bookingId"></h4>
+                            </a>
+                            <!-- <h4 id="orderId"></h4> -->
+                            <h4 id="description"></h4>
+                            <h4 id="time"></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary ">
+                            <div class="panel-heading">
+                                <h3 style="color: white; "> Add Comment</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="ibox ">
+                                        <h4>Message</h4>
+                                        <div class="form-group">
+                                            <textarea type="text" name="message" id="message" class="form-control" placeholder="Type a message " row="10"></textarea>
+                                        </div>
+                                        <div>
+                                            <h4>Status</h4>
+                                            <select class="form-control" name="status" id="status" onchange="">
+                                                <option value="pending">Pending</option>
+                                                <option value="resloved">Resolved</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                        </div>
+                                        <button class="btn btn-primary block half-width m-b" onclick="message()">Send</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary ">
+                            <div class="panel-heading">
+                                <h3 style="color: white; ">All Comment</h3>
+                            </div>
+                            <div class="wrapper wrapper-content animated fadeInRight" id="faqData"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- testing -->
+
+        <!-- Mainly scripts -->
+        <script src="./js/jquery-3.1.1.min.js"></script>
+        <script src="./js/popper.min.js"></script>
+        <script src="./js/bootstrap.js"></script>
+        <script src="./js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="./js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+        <!-- Peity -->
+        <script src="./js/plugins/peity/jquery.peity.min.js"></script>
+
+        <!-- Custom and plugin javascript -->
+        <script src="./js/inspinia.js"></script>
+        <script src="./js/plugins/pace/pace.min.js"></script>
+
+        <!-- iCheck -->
+        <script src="./js/plugins/iCheck/icheck.min.js"></script>
+
+        <!-- Peity -->
+        <script src="./js/demo/peity-demo.js"></script>
+        <!--  -->
+        <script type="text/javascript" src="paginate/pagination.min.js"></script>
+        <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            // var x = 11;
+
+            var token = localStorage.getItem("token");
+            var host = window.location.protocol + "//" + window.location.host;
+            if (!token) {
+                localStorage.removeItem("name");
+                localStorage.removeItem("token");
+                window.location.replace('/login');
+            }
+
+            function auth(code) {
+                if (code == 403) {
+                    localStorage.removeItem("name");
+                    localStorage.removeItem("token");
+                    window.location.replace('/login');
+                }
+            }
+
+            function logout() {
+                
+                $.ajax({
+                    url: host + '/api/v1/admin/logout',
+                    type: 'Get',
+                    // data: formData,
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader('x-auth', token);
+                    },
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        localStorage.removeItem("name");
+                        localStorage.removeItem("token");
+                        window.location.replace('/login');
+                    }
+                })
+            }
+            var currentLocation = window.location.href;
+            var url = new URL(currentLocation);
+            var c = url.searchParams.get("id");
+
+            // function Details() {
+            //     var obj = {
+            //         'reportId': c,
+            //     }
+            //     $.ajax({
+            //         url: host + '/api/v1/admin/perticular_issue_detail',
+            //         type: 'Post',
+            //         contentType: 'application/json',
+            //         data: JSON.stringify(obj),
+            //         beforeSend: function(xhr) {
+            //             xhr.setRequestHeader('x-auth', token);
+            //         },
+            //         dataType: 'json',
+            //         success: function(data, status) {
+            //             auth(data.code)
+                        
+            //             if (data.code == 200) {
+            //                 for(var i = 0 ; i<data.length ; i++){
+            //                     document.getElementById('description').value=data.result[i].message ? data.result[i].message:'N/A'
+            //                     document.getElementById('time').value=data.result[i].time ? data.result[i].time:'N/A'
+            //                 }
+            //                 // document.getElementById('ticektNo').innerHTML = 'Ticket No :- ' + data.result.reportId;
+            //                 // document.getElementById('bookingId').innerHTML = 'BookingId :- ' + order;
+            //                 // document.getElementById('description').innerHTML = 'Description :- ' + data.result.message;
+            //                 // document.getElementById('status').innerHTML = 'Status :- <span class="label label-success">' + data.result.status + '</span>';
+            //             } else {
+            //                 document.getElementById('categoryName').innerHTML = '';
+            //                 document.getElementById('frenchCategoryName').innerHTML = '';
+            //             }
+            //         }
+            //     })
+            // }
+            var obj_d = {
+                'reportId': c,
+            }
+            $.ajax({
+                url: host + '/api/v1/admin/perticular_issue_detail',
+                type: 'Post',
+                contentType: 'application/json',
+                data: JSON.stringify(obj_d),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                dataType: 'json',
+                success: function(data) {
+                    auth(data.code)
+                    if (data.code == 200 && data.result.length) {
+                        for (var i = 0; i < data.result.length; i++) {
+                            document.getElementById('faqData').innerHTML += '<div class="faq-item">' +
+                                '<div class="row">' +
+                                '<div class="col-md-6"> <b><strong>' + data.result[i].send_from + ' : </strong></b>  ' +
+                                data.result[i].message + ' ,  ' + data.result[i].time + ' ,  ' + formatDate(data.result[i].createdAt) + '</div>' +
+                                '</div>' +
+                                '</div>'
+                        }
+                    } else {
+                        document.getElementById('faqData').innerHTML = null;
+                    }
+                },
+            });
+
+            function message() {
+
+                var currentLocation = window.location.href;
+                var url = new URL(currentLocation);
+                var data_r = url.searchParams.get("id");
+
+                let obj = {
+                    'message': document.getElementById('message').value,
+                    'status': document.getElementById('status').value,
+                    'reportId': data_r,
+                    'send_from': 'admin',
+                    'send_to': 'user'
+                }
+               
+                if (obj.message == '' || obj.status == '' || obj.reportId == '') {
+                    swal({
+                        title: "Error",
+                        text: "Message can't be empty "
+                    });
+                } else {
+                    $.ajax({
+                        url: host + '/api/v1/admin/create_issue_message',
+                        type: 'Post',
+                        contentType: 'application/json',
+                        data: JSON.stringify(obj),
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader('x-auth', token);
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            auth(data.code)
+                            if (data.code == 200) {
+                                // swal({
+                                //     title: "Success",
+                                //     text: "Successfully sent a message "
+                                // });
+                                window.alert("Message Successfully sent")
+                                window.location.reload()
+                            } else {
+                                swal({
+                                    title: "Error",
+                                    text: data.message
+                                });
+                            }
+                        },
+                    });
+                }
+            }
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+                const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+                    "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+                ];
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+                var y = monthNames[month - 1]
+
+                return [day, monthNames[month - 1], year].join('-');
+            }
+
+
+            function booking() {
+                var data_hrs = document.getElementById('bookingId').innerHTML
+                var x = data_hrs.split(':- ');
+                window.location.href = "/bookingdetail?id=" + x[1]
+            }
+        </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="shortcut icon" href="">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Eppy</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+</head>
+
+<body onload="View()">
+
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <img alt="image" style="width: 120px;" src="../img/pizzaNpintLogo.svg" />
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold" style="margin-left: 50px;"></span>
+                                <!-- <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> -->
+                            </a>
+                        </div>
+                    </li>
+                    <div class="logo-element">
+                        Eppy
+                    </div>
+                    <li>
+                        <a href="/dashboard"><i class="fa fa-th-large"></i> <span
+                                class="nav-label">Dashboards</span></a>
+
+                    </li>
+                    <li >
+
+                        <a href="/user"><i class="fa fa-users"></i> <span class="nav-label">User</span></a>
+
+                    </li>
+                    <li >
+                        <a href="/vendor"><i class="fa fa-user"></i> <span class="nav-label">Merchant</span></a>
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-ticket"></i> <span class="nav-label">Orders</span></a>
+                        <ul class="nav nav-second-level">
+                            <!-- <li><a href="/orderPending">Order Pending</a></li> -->
+                            <li><a href="/orderProgress">Order Inprogress</a></li>
+                            <li><a href="/orderComplete">Order Completed</a></li>
+                            <li><a href="/orderCancel">Order Cancelled</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/categories"><i class="fa fa-shopping-bag"></i> <span
+                                class="nav-label">Categories</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/offers"><i class="fa fa-percent"></i> <span class="nav-label">Offers</span></a>
+                    </li>
+                    <li>
+                        <a href="/bannerList"><i class="fa fa-list"></i> <span class=" nav-label">All
+                                Banner</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-life-ring"></i> <span class="nav-labellabellabel">Notification
+                            </span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/singleNotification"> Single Notification</a></li>
+                            <li><a href="/bulkNotification">Bulk Notification</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/complaints"><i class="fa fa-comment"></i> <span
+                                class="nav-label">Complaints/Reports</span></a>
+
+                    </li>
+                    <li   >
+                        <a href="/review"><i class="fa fa-life-ring"></i> <span class=" nav-label">All
+                                Review</span></a>
+                    </li>
+                    <li>
+                        <a href="/FAQs"><i class="fa fa-info-circle"></i> <span class="nav-label">
+                                FAQs</span></a>
+
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-cogs"></i> <span
+                                class="nav-label">Settings</span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/app_version">App Version</a></li>
+                            <li><a href="/settings">Change Password</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+                    <div id="page-wrapper" class="gray-bg">
+                        <div class="row border-bottom">
+                            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                                <div class="navbar-header">
+                                    <!-- <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a> -->
+
+                                </div>
+                                <ul class="nav navbar-top-links navbar-right">
+                                    <li>
+                                        <span class="m-r-sm text-muted welcome-message">Welcome to Eppy
+                                            Admin</span>
+                                    </li>
+                                    <li>
+                                        <a onclick="logout()">
+                                            <i class="fa fa-sign-out"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </nav>
+                        </div>
+                        <div class="row wrapper border-bottom white-bg page-heading">
+                            <div class="col-lg-5">
+                                <h2>Bookings Detail</h2>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="/dashboard">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="/booking">Bookings</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">
+                                        <strong>Booking Detail </strong>
+                                    </li>
+                                </ol>
+
+                            </div>
+                            <!-- <div class="col-lg-3" style="padding-top:20px; margin-left:-5px ">
+                    <div class="card-header">
+                        <a href="/dashboard"><strong>Home</strong></a> / <a href="/booking"><strong>All Bookings </strong></a> / Booking Detail
+                    </div>
+                </div> -->
+                        </div>
+                        <div class="container">
+                            <div class="tab-content container-fluid" style="padding-bottom: 10em;">
+                                <div class="panel panel-primary" style="margin-top: 20px;">
+                                    <div class="panel-heading">
+                                        <div class="panel-title" style="color:white; ">
+                                            <h4> Booking Detail </h4>
+                                        </div>
+                                    </div>
+                                    <div class="wrapper wrapper-content animated fadeInRight">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="center">
+                                                    <div class="ibox " style="width:100%">
+                                                        <!-- <form id="form1" method="post" enctype="multipart/form-data"> -->
+                                                        <!-- <div class="ibox-content"> -->
+
+
+                                                        <div class="ibox-content">
+                                                            <div class="row">
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Booking Id</label>
+                                                                    <input type="BookingId" class="form-control"
+                                                                        id="BookingId" name="BookingId" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>User Name</label>
+                                                                    <input type="userName" class="form-control"
+                                                                        id="userName" name="userName" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>User Mobile</label>
+                                                                    <input type="userMobile" class="form-control"
+                                                                        id="userMobile" name="userMobile" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Salon Name</label>
+                                                                    <input type="salonName" class="form-control"
+                                                                        id="salonName" name="salonName" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Salon Mobile</label>
+                                                                    <input type="salonMobile" class="form-control"
+                                                                        id="salonMobile" name="salonMobile" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Salon Address</label>
+                                                                    <input type="salonAddress" class="form-control"
+                                                                        id="salonAddress" name="salonAddress" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Specialist Name</label>
+                                                                    <input type="specialistName" class="form-control"
+                                                                        id="specialistName" name="specialistName"
+                                                                        readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Specialist Mobile</label>
+                                                                    <input type="specialistMobile" class="form-control"
+                                                                        id="specialistMobile" name="specialistMobile"
+                                                                        readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Category</label>
+                                                                    <input type="category" class="form-control"
+                                                                        id="category" name="category" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Booking Date</label>
+                                                                    <input type="bookDate" class="form-control"
+                                                                        id="bookDate" name="bookDate" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Booking Time</label>
+                                                                    <input type="bookTime" class="form-control"
+                                                                        id="bookTime" name="bookTime" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Booking Slot</label>
+                                                                    <input type="bookSlot" class="form-control"
+                                                                        id="bookSlot" name="bookSlot" readonly>
+                                                                </div>
+
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Booking Status</label>
+                                                                    <input type="status" class="form-control"
+                                                                        id="status" name="status" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Payment Mode</label>
+                                                                    <input type="payMode" class="form-control"
+                                                                        id="payMode" name="payMode" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Discount Amount</label>
+                                                                    <input type="amount" class="form-control"
+                                                                        id="amount" name="amount" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Services</label>
+                                                                    <input type="service" class="form-control"
+                                                                        id="service" name="service" readonly>
+                                                                </div>
+                                                                <div class="col-md-6 form-group">
+                                                                    <label>Total Pay Amount</label>
+                                                                    <input type="Payamount" class="form-control"
+                                                                        id="Payamount" name="Payamount" readonly>
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                    <button class="btn btn-primary block half-width m-b"
+                                                                        style="margin-top:15px; float: right;"
+                                                                        onclick="Updatedata()" id="Submit">Cancel
+                                                                        Booking
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+    </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Peity -->
+    <script src="../js/plugins/peity/jquery.peity.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="../js/inspinia.js"></script>
+    <script src="../js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="../js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Peity -->
+    <script src="../js/demo/peity-demo.js"></script>
+    <script>
+        var host = window.location.protocol + "//" + window.location.host;
+        var token = localStorage.getItem("token");
+        if (!token) {
+            // localStorage.removeItem("name");
+            // localStorage.removeItem("token");
+            // window.location.replace('/login');
+        }
+
+        function auth(code) {
+            if (code == 403) {
+                // localStorage.removeItem("name");
+                // localStorage.removeItem("token");
+                // window.location.replace('/login');
+            }
+        }
+
+        function logout() {
+            console.log('logout')
+            $.ajax({
+                url: host + '/api/v1/admin/logout',
+                type: 'Get',
+                // data: formData,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    localStorage.removeItem("name");
+                    localStorage.removeItem("token");
+                    window.location.replace('/login');
+                }
+            })
+        };
+
+        function View() {
+            var currentLocation = window.location.href;
+            var url = new URL(currentLocation);
+            var c = url.searchParams.get("id");
+            let obj = {
+                "bookingId": c
+            };
+            $.ajax({
+                url: host + '/api/v1/booking/getBookingDetailsForAdmin',
+                type: 'Post',
+                contentType: 'application/json',
+                data: JSON.stringify(obj),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                dataType: 'json',
+                success: function (data, status) {
+                    auth(data.code)
+                    if (data.code == 200) {
+                        var arr = []
+                        if (data.result.serviceDetail) {
+                            // if (data.result.serviceDetail.length) {
+                            for (var i = 0; i < data.result.serviceDetail.length; i++) {
+                                arr.push(data.result.serviceDetail[i].serviceId.tittle_en)
+                            }
+                            //}
+                        }
+                        document.getElementById('BookingId').value = data.result.orderId;
+
+                        document.getElementById('userName').value = data.result.userId.name;
+                        document.getElementById('userMobile').value = data.result.userId.mobileNo,
+                            document.getElementById('salonName').value = data.result.salonDetail.name;
+                        document.getElementById('salonMobile').value = data.result.salonDetail.mobileNo;
+                        document.getElementById('salonAddress').value = data.result.salonDetail.address;
+                        document.getElementById('specialistName').value = data.result.specialistDetails.name;
+                        document.getElementById('specialistMobile').value = data.result.specialistDetails.mobile;
+                        document.getElementById('category').value = data.result.categoryId;
+
+                        document.getElementById('bookDate').value = data.result.bookingDate;
+                        document.getElementById('bookTime').value = data.result.bookingTym;
+                        document.getElementById('bookSlot').value = data.result.bookingSlot;
+
+                        document.getElementById('status').value = data.result.status;
+                        document.getElementById('payMode').value = data.result.paymentMode;
+                        document.getElementById('amount').value = data.result.discountAmount;
+                        document.getElementById('service').value = arr;
+                        document.getElementById('Payamount').value = data.result.netPayAmount
+
+
+                        if (data.result.status == 'cancelled' || data.result.status == 'completed') {
+                            document.getElementById("Submit").disabled = true;
+                        } else {
+                            document.getElementById("Submit").disabled = false;
+                        }
+                    } else {
+                        document.getElementById('table').innerHTML = ''
+                    }
+                }
+            })
+        }
+
+
+
+
+        function Updatedata() {
+            console.log("cnskcnskcs")
+            var currentLocation = window.location.href;
+            var url = new URL(currentLocation);
+            var c = url.searchParams.get("id");
+            let obj = {
+                "bookingId": c
+            };
+            // let obj = { "bookingId": num };
+            $.ajax({
+                url: host + '/api/v1/booking/updateBookingStatusForAdmin',
+                type: 'Post',
+                contentType: 'application/json',
+                data: JSON.stringify(obj),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('x-auth', token);
+                },
+                dataType: 'json',
+                success: function (data, status) {
+                    auth(data.code)
+                    if (data.code == 200) {
+                        // alert(data.message)
+                        window.location.reload()
+                    } else {
+                        alert(data.message)
+                    }
+                }
+                // });
+            });
+        }
+    </script>
+
+
+
+</body>
+
+</html>

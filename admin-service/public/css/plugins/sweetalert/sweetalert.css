@@ -1,0 +1,232 @@
+body.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+.sweet-overlay {
+  background-color: rgba(0, 0, 0, 0.4); /* Use RGBA for better compatibility */
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: none; /* Start as hidden */
+  z-index: 10000;
+}
+
+.sweet-alert {
+  background-color: white;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 478px;
+  padding: 17px;
+  border-radius: 5px;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Centering method */
+  overflow: hidden;
+  display: none; /* Start as hidden */
+  z-index: 99999;
+}
+
+@media (max-width: 540px) {
+  .sweet-alert {
+    width: auto;
+    left: 15px;
+    right: 15px;
+    margin-left: 0; /* Centering adjustment */
+    margin-right: 0; /* Centering adjustment */
+  }
+}
+
+.sweet-alert h2 {
+  color: #575757;
+  font-size: 30px;
+  font-weight: 600;
+  margin: 25px 0;
+  line-height: 40px;
+}
+
+.sweet-alert p {
+  color: #797979;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+}
+
+.sweet-alert fieldset {
+  border: none;
+}
+
+.sweet-alert .sa-error-container {
+  background-color: #f1f1f1;
+  padding: 0 10px;
+  max-height: 0;
+  transition: padding 0.15s, max-height 0.15s;
+  overflow: hidden;
+}
+
+.sweet-alert .sa-error-container.show {
+  padding: 10px 0;
+  max-height: 100px;
+}
+
+.sweet-alert .sa-error-container .icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ea7d7d;
+  color: white;
+  line-height: 24px;
+  margin-right: 3px;
+}
+
+.sweet-alert .sa-error-container p {
+  display: inline-block;
+}
+
+.sweet-alert .sa-input-error {
+  position: absolute;
+  top: 29px;
+  right: 26px;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.1s;
+}
+
+.sweet-alert .sa-input-error::before,
+.sweet-alert .sa-input-error::after {
+  content: "";
+  width: 20px;
+  height: 6px;
+  background-color: #f06e57;
+  border-radius: 3px;
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  left: 50%;
+  margin-left: -9px;
+}
+
+.sweet-alert .sa-input-error::before {
+  transform: rotate(-45deg);
+}
+
+.sweet-alert .sa-input-error::after {
+  transform: rotate(45deg);
+}
+
+.sweet-alert .sa-input-error.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sweet-alert input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid #d7d7d7;
+  height: 43px;
+  margin: 10px 0 17px;
+  font-size: 18px;
+  padding: 0 12px;
+  display: none; /* Start as hidden */
+  transition: all 0.3s;
+}
+
+.sweet-alert input:focus {
+  outline: none;
+  box-shadow: 0px 0px 3px #c4e6f5;
+  border: 1px solid #b4dbed;
+}
+
+.sweet-alert input::placeholder {
+  color: #bdbdbd;
+}
+
+.sweet-alert.show-input input {
+  display: block; /* Show input when needed */
+}
+
+.sweet-alert button {
+  background-color: #AEDEF4;
+  color: white;
+  border: none;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 10px 32px;
+  margin: 26px 5px 0;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.sweet-alert button:focus {
+  outline: none;
+  box-shadow: 0 0 2px rgba(128, 179, 235, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.sweet-alert button:hover {
+  background-color: #a1d9f2;
+}
+
+.sweet-alert button:active {
+  background-color: #81ccee;
+}
+
+.sweet-alert button.cancel {
+  background-color: #D0D0D0;
+}
+
+.sweet-alert button.cancel:hover {
+  background-color: #c8c8c8;
+}
+
+.sweet-alert button.cancel:active {
+  background-color: #b6b6b6;
+}
+
+.sweet-alert .sa-icon {
+  width: 80px;
+  height: 80px;
+  border: 4px solid gray;
+  border-radius: 50%;
+  margin: 20px auto;
+  position: relative;
+  box-sizing: content-box;
+}
+
+/* Success Icon */
+.sweet-alert .sa-icon.sa-success {
+  border-color: #A5DC86;
+}
+
+/* Add additional styles for warning, error, etc. here... */
+
+/* Animations */
+@keyframes showSweetAlert {
+  0% { transform: scale(0.7); }
+  45% { transform: scale(1.05); }
+  80% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes hideSweetAlert {
+  0% { transform: scale(1); }
+  100% { transform: scale(0.5); }
+}
+
+/* Additional keyframes for slide animations... */
+
+/* Show/Hide Animations */
+.showSweetAlert[data-animation=pop] {
+  animation: showSweetAlert 0.3s;
+}
+
+.hideSweetAlert[data-animation=pop] {
+  animation: hideSweetAlert 0.2s;
+}

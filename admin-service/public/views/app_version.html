@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .center {
+            margin: auto;
+            width: 60%;
+            /* border: 3px solid #73AD21; */
+            padding: 10px;
+        }
+    </style>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Eppy</title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="./css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="./css/animate.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+
+</head>
+
+<body onload="awayTimeGet()">
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <img alt="image" style="width: 120px;" src="../img/pizzaNpintLogo.svg" />
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold" style="margin-left: 50px;"></span>
+                                <!-- <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> -->
+                            </a>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    <li>
+                        <a href="/dashboard"><i class="fa fa-th-large"></i> <span
+                                class="nav-label">Dashboards</span></a>
+
+                    </li>
+                    <li>
+
+                        <a href="/user"><i class="fa fa-users"></i> <span class="nav-label">User</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/vendor"><i class="fa fa-user"></i> <span class="nav-label">Merchant</span></a>
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-ticket"></i> <span class="nav-label">Orders</span></a>
+                        <ul class="nav nav-second-level">
+                            <!-- <li><a href="/orderPending">Order Pending</a></li> -->
+                            <li><a href="/orderProgress">Order Inprogress</a></li>
+                            <li><a href="/orderComplete">Order Completed</a></li>
+                            <li><a href="/orderCancel">Order Cancelled</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/categories"><i class="fa fa-shopping-bag"></i> <span
+                                class="nav-label">Categories</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/offers"><i class="fa fa-percent"></i> <span class="nav-label">Offers</span></a>
+                    </li>
+                    <li>
+                        <a href="/bannerList"><i class="fa fa-list"></i> <span class=" nav-label">All
+                                Banner</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-life-ring"></i> <span class="nav-labellabellabel">Notification
+                            </span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="/singleNotification"> Single Notification</a></li>
+                            <li><a href="/bulkNotification">Bulk Notification</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/complaints"><i class="fa fa-comment"></i> <span
+                                class="nav-label">Complaints/Reports</span></a>
+
+                    </li>
+                    <li>
+                        <a href="/review"><i class="fa fa-life-ring"></i> <span class=" nav-label">All
+                                Review</span></a>
+                    </li>
+                    <li>
+                        <a href="/FAQs"><i class="fa fa-info-circle"></i> <span class="nav-label">
+                                FAQs</span></a>
+
+                    </li>
+
+                    <li class='active'>
+                        <a href="#"><i class="fa fa-cogs"></i> <span class="nav-label">Settings</span></a>
+                        <ul class="nav nav-second-level">
+                            <li class='active'><a href="/app_version">App Version</a></li>
+                            <li><a href="/settings">Change Password</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <!-- <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a> -->
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Welcome to Eppy Admin </span>
+                        </li>
+
+                        <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
+                    </ul>
+
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Application Setting </h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/dashboard">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Setting</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <strong>Application Setting </strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="ibox " style="width:100%">
+                            <div class="ibox-title">
+                                <div class="panel panel-primary " style="width:108%">
+                                    <div class="panel-heading">
+                                        <h3 style="color: white; ">Application Setting</h3>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h4>Android User Version</h4>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="User Android Version" id="user_A" name="user_A"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h4>Android User Update Type</h4>
+                                                <!-- <div class=" col-lg-6"> -->
+                                                <select class="form-control" style="width:80%" name="opts" id="opts"
+                                                    onchange="">
+                                                    <option value="Normal">Normal</option>
+                                                    <option value="Force">Force</option>
+                                                </select>
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <h4>Ios User Version</h4>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="User Ios Version" id="user_Ios" name="Ios"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h4>Ios User Update Type</h4>
+                                                <!-- <div class=" col-lg-6"> -->
+                                                <select class="form-control" style="width:80%" name="opts1" id="opts1"
+                                                    onchange="">
+                                                    <option value="Normal">Normal</option>
+                                                    <option value="Force">Force</option>
+                                                </select>
+                                                <!-- </div> -->
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h4>Android Merchant Version</h4>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Merchant Android Version" id="vendor_A"
+                                                        name="Version" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h4>Android Merchant Update Type</h4>
+                                                <!-- <div class=" col-lg-6"> -->
+                                                <select class="form-control" style="width:80%" name="opts2" id="opts2"
+                                                    onchange="">
+                                                    <option value="Normal">Normal</option>
+                                                    <option value="Force">Force</option>
+                                                </select>
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <h4>Ios Merchant Version</h4>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Merchant Ios Version" id="Ios_V" name="Ios" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h4>Ios Merchant Update Type</h4>
+                                                <!-- <div class=" col-lg-6"> -->
+                                                <select class="form-control" style="width:80%" name="opts3" id="opts3"
+                                                    onchange="">
+                                                    <option value="Normal">Normal</option>
+                                                    <option value="Force">Force</option>
+                                                </select>
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <h4>Android Kitchen Manager Version</h4>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Kitchen Manager Android Version" id="kitchenAV"
+                                                        name="AndriodKitchenVersion" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h4>Android Kitchen Manager Update Type</h4>
+                                                <!-- <div class=" col-lg-6"> -->
+                                                <select class="form-control" style="width:80%"
+                                                    name="AndriodKitchenUpdate" id="kitchenAU" onchange="">
+                                                    <option value="Normal">Normal</option>
+                                                    <option value="Force">Force</option>
+                                                </select>
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <h4>Ios Kitchen Manager Version</h4>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Kitchen Manager Ios Version" id="kitchenIosV"
+                                                        name="IosKitchenVersion" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h4>Ios Kitchen Manager Update Type</h4>
+                                                <!-- <div class=" col-lg-6"> -->
+                                                <select class="form-control" style="width:80%" name="IosKitchenUpdate"
+                                                    id="kitchenIosU" onchange="">
+                                                    <option value="Normal">Normal</option>
+                                                    <option value="Force">Force</option>
+                                                </select>
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+                                        <div class=" col-lg-6">
+                                            <button class="btn btn-primary block half-width m-b"
+                                                onclick="Add()">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="ibox " style="width:100% ">
+                            <div class="ibox-title">
+                                <div class="panel panel-primary " style="width:120%">
+                                    <div class="panel-heading">
+                                        <h3 style="color: white; ">Order Cancelled Time </h3>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <h4> Time (in Second) </h4>
+                                        <div class="form-group">
+                                            <input type="number" min="0" class="form-control"
+                                                placeholder="Time in Second" id="orderCancelTime" name="orderCancelTime"
+                                                required>
+                                        </div>
+                                        <h4>Last Updated Date </h4>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Date" id="updatedAt" readonly>
+                                        </div>
+                                        <button class="btn btn-primary block half-width m-b"
+                                            onclick="xchange()">Update</button>
+                                        <!-- <div class="panel panel-primary " style="width:100%">
+                                            <div class="panel-heading">
+                                                <h3 style="color: white; ">Accept OR Away Time(in Minute) </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="form-group">
+                                                    <div class="col-lg-12">
+                                                        <div class="ibox " style="width:100%">
+                                                            <h4> Accept Time (in Minute) </h4>
+                                                            <div class="form-group">
+                                                                <input type="number" min="0" class="form-control"
+                                                                    placeholder="Minute" id="acceptTime"
+                                                                    name="acceptTime">
+                                                            </div>
+                                                            <h4>Away Time (in Minute) </h4>
+                                                            <div class="form-group">
+                                                                <input type="number" min="0" class="form-control"
+                                                                    placeholder="Minute" id="awayTime" name="awayTime">
+                                                            </div>
+
+                                                            <button class="btn btn-primary block half-width m-b"
+                                                                onclick="awayTime()">Update</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div> -->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary ">
+                            <div class="panel-heading">
+                                <h3 style="color: white; ">Manage Distance</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <div class="ibox " style="width:100%">
+                                            <div class="ibox-content">
+
+                                                <h4> Last Updated (In Miles) </h4>
+                                                <div class="form-group">
+                                                    <input type="number" min="0" class="form-control"
+                                                        placeholder="Distance In Meter" id="Distance" name="Distance"
+                                                        readonly>
+                                                </div>
+                                                <h4>Current Distance (In Miles) </h4>
+                                                <div class="form-group">
+                                                    <input type="number" min="0" class="form-control"
+                                                        placeholder="Distance In Meter" id="cdistance" name="cdistance"
+                                                        required="required">
+                                                </div>
+                                                <h4>Last Updated Date </h4>
+                                                <div class="form-group">
+                                                    <input class="form-control" placeholder="Date" id="Date1" readonly>
+                                                </div>
+                                                <button class="btn btn-primary block half-width m-b"
+                                                    onclick="change()">Update</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-6">
+                        <div class="panel panel-primary ">
+                            <div class="panel-heading">
+                                <h3 style="color: white; ">Static Rating</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <div class="ibox " style="width:100%">
+                                            <div class="ibox-content">
+
+                                                <h4>Static Rating </h4>
+                                                <div class="form-group">
+                                                    <input type="number" min="0" class="form-control" placeholder="Static Rating" id="Rating" name="Rating" required>
+                                                </div>
+                                                <h4>Booking Limit </h4>
+                                                <div class="form-group">
+                                                    <input type="number" min="0" class="form-control" placeholder="Booking Limit" id="booking" name="booking" required="required">
+                                                </div>
+                                                <h4>Last Updated Date </h4>
+                                                <div class="form-group">
+                                                    <input class="form-control" placeholder="Date" id="LDate" readonly>
+                                                </div>
+                                                <button class="btn btn-primary block half-width m-b" onclick="static()">Update</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-4">
+                        <div class="ibox " style="width:100%">
+                            <div class="ibox-title">
+                                <div class="panel panel-primary " style="width:120%">
+                                    <div class="panel-heading">
+                                        <h3 style="color: white; ">Admin Percentage</h3>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <h4> Admin Percentage (in %)</h4>
+                                        <div class="form-group">
+                                            <input type="number" min="0" class="form-control" placeholder='Admin %' id="adminPrcnt" name="adminPrcnt" required>
+                                        </div>
+                                        <h4> VAT (in %)</h4>
+                                        <div class="form-group">
+                                            <input type="number" min="0" class="form-control" placeholder='vat %' id="vat" name="vat" required>
+                                        </div>
+                                        <h4>Admin Email </h4>
+                                        <div class="form-group">
+                                            <input type="Text" class="form-control" placeholder='Email' id="email" name="email" readonly>
+                                        </div>
+                                        <button class="btn btn-primary block half-width m-b" onclick="PrcntUpdate()">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+
+
+            <!-- Mainly scripts -->
+            <script src="./js/jquery-3.1.1.min.js"></script>
+            <script src="./js/popper.min.js"></script>
+            <script src="./js/bootstrap.js"></script>
+            <script src="./js/plugins/metisMenu/jquery.metisMenu.js"></script>
+            <script src="./js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+            <!-- Peity -->
+            <script src="./js/plugins/peity/jquery.peity.min.js"></script>
+
+            <!-- Custom and plugin javascript -->
+            <script src="./js/inspinia.js"></script>
+            <script src="./js/plugins/pace/pace.min.js"></script>
+
+            <!-- iCheck -->
+            <script src="./js/plugins/iCheck/icheck.min.js"></script>
+
+            <!-- Peity -->
+            <script src="./js/demo/peity-demo.js"></script>
+            <script>
+                var host = window.location.protocol + "//" + window.location.host;
+                var token = localStorage.getItem("token")
+                if (!token) {
+                    localStorage.removeItem("name");
+                    localStorage.removeItem("token");
+                    window.location.replace('/login');
+                }
+
+                function auth(code) {
+                    if (code == 403) {
+                        localStorage.removeItem("name");
+                        localStorage.removeItem("token");
+                        window.location.replace('/login');
+                    }
+                }
+
+                function logout() {
+                    console.log('logout')
+                    $.ajax({
+                        url: host + '/api/v1/admin/logout',
+                        type: 'Get',
+                        // data: formData,
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('x-auth', token);
+                        },
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            localStorage.removeItem("name");
+                            localStorage.removeItem("token");
+                            window.location.replace('/login');
+                        }
+                    })
+                };
+                $.ajax({
+                    url: host + '/api/v1/version/getVersionDetail',
+                    type: 'Get',
+                    // data: formData,
+                    // beforeSend: function(xhr) {
+                    //     xhr.setRequestHeader('x-auth', token);
+                    // },
+                    contentType: false,
+                    processData: false,
+                    success: function (data, status) {
+                        auth(data.code)
+                        if (data.code == 200) {
+                            document.getElementById('user_A').value = data.result.AndriodUserVersion;
+                            document.getElementById('user_Ios').value = data.result.IosUserVersion;
+                            document.getElementById('vendor_A').value = data.result.AndriodVendorVersion;
+                            document.getElementById('Ios_V').value = data.result.IosVendorVersion;
+                            document.getElementById('opts').value = data.result.AndriodUserUpdate;
+                            document.getElementById('opts1').value = data.result.IosUserUpdate;
+                            document.getElementById('opts2').value = data.result.AndriodVendorUpdate;
+                            document.getElementById('opts3').value = data.result.IosVendorUpdate;
+                            document.getElementById('kitchenAV').value = data.result.AndriodKitchenVersion;
+                            document.getElementById('kitchenIosV').value = data.result.IosKitchenVersion;
+                            document.getElementById('kitchenAU').value = data.result.AndriodKitchenUpdate;
+                            document.getElementById('kitchenIosU').value = data.result.IosKitchenUpdate
+                        } else {
+                            document.getElementById('version').innerHTML = '';
+                            document.getElementById('Ios').innerHTML = '';
+                        }
+                    }
+                });
+
+
+
+                function Add() {
+                    var A_user = document.getElementById('user_A').value;
+                    var I_user = document.getElementById('user_Ios').value;
+                    var A_vendor = document.getElementById('vendor_A').value;
+                    var I_vendor = document.getElementById('Ios_V').value;
+                    var Auser_updt = document.getElementById('opts').value;
+                    var Iuser_updt = document.getElementById('opts1').value;
+                    var Avendor_updt = document.getElementById('opts2').value;
+                    var Ivendor_updt = document.getElementById('opts3').value;
+                    var obj = {
+                        "AndriodUserVersion": A_user,
+                        "AndriodVendorVersion": A_vendor,
+                        "IosUserVersion": I_user,
+                        "IosVendorVersion": I_vendor,
+                        'AndriodUserUpdate': Auser_updt,
+                        'AndriodVendorUpdate': Avendor_updt,
+                        'IosUserUpdate': Iuser_updt,
+                        'IosVendorUpdate': Ivendor_updt
+                    }
+
+                    $.ajax({
+                        url: host + '/api/v1/version/editVersion',
+                        type: 'Post',
+                        contentType: 'application/json',
+                        data: JSON.stringify(obj),
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('x-auth', token);
+                        },
+                        dataType: 'json',
+                        success: function (data, status) {
+                            auth(data.code)
+
+                            if (data.code == 200) {
+                                alert(data.message)
+                                window.location.reload('/app_version');
+                            } else {
+                                alert(data.message);
+                            }
+                        }
+                    })
+                }
+
+                function formatDate(date) {
+                    var d = new Date(date),
+                        month = '' + (d.getMonth() + 1),
+                        day = '' + d.getDate(),
+                        year = d.getFullYear();
+                    const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+                        "July", "Aug", "Sept", "Oct", "Nov", "Dec"
+                    ];
+                    if (month.length < 2)
+                        month = '0' + month;
+                    if (day.length < 2)
+                        day = '0' + day;
+                    var y = monthNames[month - 1]
+                    // console.log('month',y)
+                    return [day, monthNames[month - 1], year].join('-');
+                }
+                $.ajax({
+                    url: host + '/api/v1/admin/get_Distance',
+                    type: 'Get',
+                    // data: formData,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('x-auth', token);
+                    },
+                    contentType: false,
+                    processData: false,
+                    success: function (data, status) {
+
+                        auth(data.code)
+                        if (data.code == 200) {
+                            document.getElementById('Distance').value = data.result.LastDistance,
+                                document.getElementById('cdistance').value = data.result.CurrentDistance;
+                            document.getElementById('Date1').value = formatDate(data.result.updatedAt)
+                        } else {
+                            alert(data.message);
+                        }
+                    }
+                })
+
+                function change() {
+                    console.log('test');
+                    var x = document.getElementById('Distance').value;
+                    var y = document.getElementById('cdistance').value
+                    let obj = {
+                        'distance': y,
+                        "LastDistance": x,
+                    }
+                    console.log(obj, "obj")
+                    $.ajax({
+                        url: host + '/api/v1/admin/edit_Distance',
+                        type: 'Post',
+                        contentType: 'application/json',
+                        data: JSON.stringify(obj),
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('x-auth', token);
+                        },
+                        dataType: 'json',
+                        success: function (data, status) {
+                            auth(data.code)
+                            console.log("response", data, status);
+                            if (data.code == 200) {
+                                // alert(data.message);
+                                window.location.reload('/application');
+                            } else {
+                                alert(data.message);
+                            }
+                        }
+                    });
+                }
+
+                $.ajax({
+                    url: host + '/api/v1/admin/admingetCanceltime',
+                    type: 'Get',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('x-auth', token);
+                    },
+                    contentType: false,
+                    processData: false,
+                    success: function (data, status) {
+
+                        // auth(data.code)
+                        if (data.code == 200) {
+                            // document.getElementById('tax').value = data.result.tax;
+                            document.getElementById('orderCancelTime').value = data.result.orderCancelTime;
+                            document.getElementById('updatedAt').value = formatDate(data.result.updatedAt);
+                        } else {
+                            alert(data.message);
+                        }
+                    }
+                });
+
+                function xchange() {
+
+                    // var x = document.getElementById('tax').value;
+                    var y = document.getElementById('orderCancelTime').value;
+                    var z = document.getElementById('updatedAt').value;
+                    let obj = {
+                        // 'tax': x,
+                        'orderCancelTime': y,
+                        'updatedAt': z
+                    }
+                    $.ajax({
+                        url: host + '/api/v1/admin/adminCanceltime',
+                        type: 'Post',
+                        contentType: 'application/json',
+                        data: JSON.stringify(obj),
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('x-auth', token);
+                        },
+                        dataType: 'json',
+                        success: function (data, status) {
+                            auth(data.code)
+
+                            if (data.code == 200) {
+                                alert(data.message);
+                                window.location.reload('/app_version');
+                            } else {
+                                alert(data.message);
+                            }
+                        }
+                    });
+                }
+
+                function awayTime() {
+
+                    var acceptTimes = document.getElementById('acceptTime').value;
+                    var awayTimes = document.getElementById('awayTime').value;
+                    let obj = {
+                        'acceptTime': acceptTimes,
+                        'awayTime': awayTimes
+                    }
+                    $.ajax({
+                        url: host + '/api/v1/admin/admingetNotificationAwayTime',
+                        type: 'Post',
+                        contentType: 'application/json',
+                        data: JSON.stringify(obj),
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('x-auth', token);
+                        },
+                        dataType: 'json',
+                        success: function (data, status) {
+                            auth(data.code)
+
+                            if (data.code == 200) {
+                                alert(data.message);
+                                window.location.reload('/app_version');
+                            } else {
+                                alert(data.message);
+                            }
+                        }
+                    });
+                }
+                function awayTimeGet() {
+
+                    $.ajax({
+                        url: host + '/api/v1/admin/admingetNotificationAwayTimeGet',
+                        type: 'GET',
+                        contentType: 'application/json',
+                        // data: JSON.stringify(obj),
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('x-auth', token);
+                        },
+                        dataType: 'json',
+                        success: function (data, status) {
+                            auth(data.code)
+                            if (data.code == 200) {
+                                document.getElementById('acceptTime').value = data.result.acceptTime,
+                                    document.getElementById('awayTime').value = data.result.awayTime;
+
+                            } else {
+                                alert(data.message);
+                            }
+                        }
+                    });
+                }
+
+                // function PrcntUpdate() {
+                //     var x = document.getElementById('adminPrcnt').value;
+                //     var vat = document.getElementById('vat').value;
+
+                //     let obj = {
+                //         'percent': x,
+                //         'vat': vat
+                //     }
+                //     $.ajax({
+                //         url: host + '/api/v1/admin/updateAdminPercentage',
+                //         type: 'Post',
+                //         contentType: 'application/json',
+                //         data: JSON.stringify(obj),
+                //         beforeSend: function(xhr) {
+                //             xhr.setRequestHeader('x-auth', token);
+                //         },
+                //         dataType: 'json',
+                //         success: function(data, status) {
+                //             auth(data.code)
+                //             console.log("response", data, status);
+                //             if (data.code == 200) {
+                //                 // alert(data.message);
+                //                 window.location.reload('/application');
+                //             } else {
+                //                 alert(data.message);
+                //             }
+                //         }
+                //     });
+                // }
+                // $.ajax({
+                //     url: host + '/api/v1/rating/viewStaticRating',
+                //     type: 'Get',
+                //     // data: formData,
+                //     beforeSend: function(xhr) {
+                //         xhr.setRequestHeader('x-auth', token);
+                //     },
+                //     contentType: false,
+                //     processData: false,
+                //     success: function(data, status) {
+                //         console.log("response", data, status);
+                //         console.log(data.result)
+                //         auth(data.code)
+                //         if (data.code == 200) {
+                //             document.getElementById('Rating').value = data.result.staticRating,
+                //                 document.getElementById('booking').value = data.result.bookingLimit;
+                //             document.getElementById('LDate').value = formatDate(data.result.updatedAt)
+                //         } else {
+                //             alert(data.message);
+                //         }
+                //     }
+                // })
+
+                // function static() {
+                //     let obj = {
+                //         'staticRating': document.getElementById('Rating').value,
+                //         'bookingLimit': document.getElementById('booking').value
+                //     }
+                //     $.ajax({
+                //         url: host + '/api/v1/rating/addEditStaticRating',
+                //         type: 'Post',
+                //         contentType: 'application/json',
+                //         data: JSON.stringify(obj),
+                //         beforeSend: function(xhr) {
+                //             xhr.setRequestHeader('x-auth', token);
+                //         },
+                //         dataType: 'json',
+                //         success: function(data, status) {
+                //             auth(data.code)
+                //             console.log("response", data, status);
+                //             if (data.code == 200) {
+                //                 alert(data.message);
+                //                 window.location.reload('/application');
+                //             } else {
+                //                 alert(data.message);
+                //             }
+                //         }
+                //     });
+                // }
+            </script>
+
+            <script>
+                $(document).ready(function () {
+                    $('.i-checks').iCheck({
+                        checkboxClass: 'icheckbox_square-green',
+                        radioClass: 'iradio_square-green',
+                    });
+                });
+            </script>
+
+</body>
+
+</html>

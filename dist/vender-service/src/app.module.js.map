@@ -1,0 +1,1 @@
+{"version":3,"file":"app.module.js","sourceRoot":"","sources":["../../../vender-service/src/app.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,qDAAiD;AACjD,+CAA2C;AAoBpC,IAAM,SAAS,GAAf,MAAM,SAAS;CAAG,CAAA;AAAZ,8BAAS;oBAAT,SAAS;IAjBrB,IAAA,eAAM,EAAC;QACN,OAAO,EAAE,EAYR;QACD,WAAW,EAAE,CAAC,8BAAa,CAAC;QAC5B,SAAS,EAAE,CAAC,wBAAU,CAAC;KACxB,CAAC;GACW,SAAS,CAAG"}
